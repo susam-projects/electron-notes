@@ -13,7 +13,7 @@ function createWindow() {
         },
     });
 
-    win.loadFile("src/index.html");
+    win.loadFile("index.html");
 
     // win.webContents.openDevTools();
 
