@@ -11,3 +11,5 @@ lerna-debug.log*
 
 # NodeJS
 node_modules
+
+dist
