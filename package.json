@@ -1,0 +1,10 @@
+{
+  "name": "electron-diary",
+  "version": "0.0.1",
+  "description": "it's kinda offline blog",
+  "main": "index.js",
+  "repository": "https://github.com/susam-projects/electron-diary.git",
+  "author": "susam",
+  "license": "MIT",
+  "private": false
+}
