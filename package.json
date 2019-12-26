@@ -2,9 +2,16 @@
   "name": "electron-diary",
   "version": "0.0.1",
   "description": "it's kinda offline blog",
-  "main": "index.js",
+  "main": "src/main.js",
   "repository": "https://github.com/susam-projects/electron-diary.git",
   "author": "susam",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^7.1.7",
+    "prettier": "^1.19.1"
+  }
 }
