@@ -8,22 +8,22 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { SinglePostPage } from "./Page/SinglePostPage/SinglePostPage";
 
 interface IAppUiProps {
-    core: Core;
+  core: Core;
 }
 
 export const AppUi: React.FC<IAppUiProps> = ({ core }) => {
-    return (
-        <BrowserRouter>
-            <AppContextProvider core={core}>
-                <AppLayout
-                    page={
-                        <Switch>
-                            <Route path={"/post/:id"} component={SinglePostPage} />
-                            <Route path={"/"} component={PostListPage} />
-                        </Switch>
-                    }
-                />
-            </AppContextProvider>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <AppContextProvider core={core}>
+        <AppLayout
+          page={
+            <Switch>
+              <Route path={"/post/:id"} component={SinglePostPage} />
+              <Route path={"/"} component={PostListPage} />
+            </Switch>
+          }
+        />
+      </AppContextProvider>
+    </BrowserRouter>
+  );
 };
