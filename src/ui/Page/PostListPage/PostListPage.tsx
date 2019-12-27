@@ -5,7 +5,7 @@ import { AppContextConsumer, IAppContext } from "../../AppContext";
 
 const styles = require("./PostListPage.scss");
 
-export class PostListPage extends React.Component {
+class PostListPage extends React.Component {
   render() {
     return <AppContextConsumer children={this.renderContent} />;
   }
@@ -29,3 +29,5 @@ export class PostListPage extends React.Component {
     );
   }
 }
+
+export default PostListPage;
