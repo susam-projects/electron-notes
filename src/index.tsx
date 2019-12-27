@@ -1,8 +1,8 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { AppUi } from "./ui/AppUI";
+import { Core } from "./core/Core";
 
-const Index = () => {
-    return <h1>The Diary</h1>;
-};
+const core = new Core();
 
-ReactDOM.render(<Index />, document.getElementById('app'));
+ReactDOM.render(<AppUi core={core} />, document.getElementById("app"));

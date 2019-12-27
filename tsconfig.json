@@ -1,5 +1,28 @@
 {
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "**/*.test.*"
+  ],
   "compilerOptions": {
-    "jsx": "react"
+    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "sourceMap": true,
+    "noEmitOnError": false,
+    "module": "es6",
+    "lib": [ "es7", "dom" ],
+    "target": "es6",
+    "jsx": "react",
+    "pretty": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "skipLibCheck": true,
+    "downlevelIteration": true,
+    "importHelpers": true
   }
 }
