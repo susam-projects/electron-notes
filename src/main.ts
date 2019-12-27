@@ -1,10 +1,10 @@
 import { app, BrowserWindow } from "electron";
 // @ts-ignore
-import installExtension, { REACT_DEVELOPER_TOOLS } from 'iyobo-electron-devtools-installer';
+import installExtension, { REACT_DEVELOPER_TOOLS } from "iyobo-electron-devtools-installer";
 
 installExtension(REACT_DEVELOPER_TOOLS)
     .then((name: string) => console.log(`Added Extension:  ${name}`))
-    .catch((err: any) => console.log('An error occurred: ', err));
+    .catch((err: any) => console.log("An error occurred: ", err));
 
 // Храните глобальную ссылку на объект окна, если вы этого не сделаете, окно будет
 // автоматически закрываться, когда объект JavaScript собирает мусор.
