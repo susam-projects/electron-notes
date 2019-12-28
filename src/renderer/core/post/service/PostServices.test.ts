@@ -24,7 +24,7 @@ describe("post storage services", () => {
     });
 
     it("can try to get non existent post", async () => {
-        const storedPost = await postFinder.getPostById("it-is-not-there");
+        const storedPost = await postFinder.getPostById(666);
         expect(storedPost).to.be.undefined;
     });
 
