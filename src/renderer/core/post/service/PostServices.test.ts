@@ -23,6 +23,11 @@ describe("post storage services", () => {
         expect(storedPost).to.deep.include(postData);
     });
 
+    it("can try to get non existent post", async () => {
+        const storedPost = await postFinder.getPostById("it-is-not-there");
+        expect(storedPost).to.be.undefined;
+    });
+
     it("can get all stored posts", async () => {
         const post1 = { title: "post-title-1", author: "post-author", content: "post-content-1" };
         const post2 = { title: "post-title-2", author: "post-author", content: "post-content-2" };
@@ -34,6 +39,11 @@ describe("post storage services", () => {
         const storedPost2 = await postFinder.getPostById(post2Id);
         expect(storedPost1).to.deep.include(post1);
         expect(storedPost2).to.deep.include(post2);
+    });
+
+    it("try to get all posts from empty storage", async () => {
+        const storedPosts = await postFinder.getAllPosts();
+        expect(storedPosts).to.deep.equal([]);
     });
 
     it("can clear posts storage", async () => {
@@ -88,7 +98,7 @@ describe("post storage services", () => {
         const postNextTo3 = await postFinder.getNextPost(post3Id);
         expect(postNextTo1).to.deep.include(post2);
         expect(postNextTo2).to.deep.include(post3);
-        expect(postNextTo3).to.be.undefined();
+        expect(postNextTo3).to.be.undefined;
     });
 
     it("can get prev post", async () => {
@@ -101,7 +111,7 @@ describe("post storage services", () => {
         const postPrevTo1 = await postFinder.getPrevPost(post1Id);
         const postPrevTo2 = await postFinder.getPrevPost(post2Id);
         const postPrevTo3 = await postFinder.getPrevPost(post3Id);
-        expect(postPrevTo1).to.be.undefined();
+        expect(postPrevTo1).to.be.undefined;
         expect(postPrevTo2).to.deep.include(post1);
         expect(postPrevTo3).to.deep.include(post2);
     });

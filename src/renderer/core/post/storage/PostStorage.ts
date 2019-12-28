@@ -1,5 +1,5 @@
 import Dexie from "dexie";
-import { IStoredPost, TPostId } from "../service/IStoredPost";
+import { IPostData, IStoredPost, TPostDate, TPostId } from "../service/IStoredPost";
 import { IPostStorage } from "../service/IPostStorage";
 
 export class PostStorage implements IPostStorage {
@@ -8,11 +8,11 @@ export class PostStorage implements IPostStorage {
     constructor() {
         this.db = new Dexie("posts");
         this.db.version(1).stores({
-            posts: "++id",
+            posts: "++id, postDate",
         });
     }
 
-    add(post: IStoredPost): Promise<string> {
+    add(post: IPostData): Promise<string> {
         return this.table.add(post);
     }
 
@@ -20,7 +20,7 @@ export class PostStorage implements IPostStorage {
         return this.table.delete(postId);
     }
 
-    async update(postId: TPostId, changes: Partial<IStoredPost>): Promise<void> {
+    async update(postId: TPostId, changes: Partial<IPostData>): Promise<void> {
         await this.table.update(postId, changes);
     }
 
@@ -30,6 +30,20 @@ export class PostStorage implements IPostStorage {
 
     getAll(): Promise<IStoredPost[]> {
         return this.table.filter(() => true).toArray();
+    }
+
+    getFromDateAndOlder(postDate: TPostDate): Promise<IStoredPost[]> {
+        return this.table
+            .where("postDate")
+            .belowOrEqual(postDate)
+            .toArray();
+    }
+
+    getFromDateAndMoreRecent(postDate: TPostDate): Promise<IStoredPost[]> {
+        return this.table
+            .where("postDate")
+            .aboveOrEqual(postDate)
+            .toArray();
     }
 
     clear(): Promise<void> {

@@ -16,13 +16,25 @@ export class PostFinder implements IPostFinder {
         return this.storage.get(id);
     }
 
-    getNextPost(postId: string): Promise<IPostPagePostInfo | undefined> {
+    async getNextPost(postId: string): Promise<IPostPagePostInfo | undefined> {
         console.log(`getting post next of ${postId}`);
-        return this.storage.get(postId);
+
+        const post = await this.storage.get(postId);
+        if (!post) return;
+
+        const postsFromDate = await this.storage.getFromDateAndMoreRecent(post.postDate);
+        const moreRecentPosts = postsFromDate.filter(post => post.id !== postId);
+        return moreRecentPosts[0];
     }
 
-    getPrevPost(postId: string): Promise<IPostPagePostInfo | undefined> {
+    async getPrevPost(postId: string): Promise<IPostPagePostInfo | undefined> {
         console.log(`getting post prev to ${postId}`);
-        return this.storage.get(postId);
+
+        const post = await this.storage.get(postId);
+        if (!post) return;
+
+        const postsFromDate = await this.storage.getFromDateAndOlder(post.postDate);
+        const olderPosts = postsFromDate.filter(post => post.id !== postId);
+        return olderPosts[olderPosts.length - 1];
     }
 }
