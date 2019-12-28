@@ -32,6 +32,10 @@ export class PostStorage implements IPostStorage {
         return this.table.filter(() => true).toArray();
     }
 
+    getAllReversed(): Promise<IStoredPost[]> {
+        return this.table.filter(() => true).reverse().toArray();
+    }
+
     getFromDateAndOlder(postDate: TPostDate): Promise<IStoredPost[]> {
         return this.table
             .where("postDate")

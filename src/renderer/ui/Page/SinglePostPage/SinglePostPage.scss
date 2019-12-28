@@ -1,4 +1,14 @@
 .next-prev-container {
+  margin-top: 8px;
   display: flex;
-  justify-content: space-between;
+  .next {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .prev {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-start;
+  }
 }

@@ -8,7 +8,7 @@ export class PostFinder implements IPostFinder {
 
     getAllPosts(): Promise<IPostListPostInfo[]> {
         console.log(`getting all posts`);
-        return this.storage.getAll();
+        return this.storage.getAllReversed();
     }
 
     getPostById(id: number): Promise<IPostPagePostInfo | undefined> {

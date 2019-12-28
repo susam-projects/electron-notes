@@ -64,6 +64,9 @@ class SinglePostPage extends React.Component<ISinglePostPageProps, ISinglePostPa
     const { post, prevPost, nextPost } = this.state;
     return (
       <div>
+        <div>
+          <Link to={`/edit-post/${post.id}`}>Редактировать</Link>
+        </div>
         <div>{post.title}</div>
         <div>{post.author}</div>
         <div>{post.content}</div>
@@ -71,10 +74,10 @@ class SinglePostPage extends React.Component<ISinglePostPageProps, ISinglePostPa
           <Link to={"/"}>На список постов</Link>
         </div>
         <div className={styles.nextPrevContainer}>
-          <div style={{ flexGrow: 1, display: "flex", justifyContent: "flex-start" }}>
+          <div className={styles.prev}>
             {prevPost && <Link to={`/post/${prevPost.id}`}>{prevPost.title}</Link>}
           </div>
-          <div style={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}>
+          <div className={styles.next}>
             {nextPost && <Link to={`/post/${nextPost.id}`}>{nextPost.title}</Link>}
           </div>
         </div>

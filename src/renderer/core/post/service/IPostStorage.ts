@@ -7,6 +7,7 @@ export interface IPostStorage {
     clear(): Promise<void>;
     get(postId: TPostId): Promise<IStoredPost>;
     getAll(): Promise<IStoredPost[]>;
+    getAllReversed(): Promise<IStoredPost[]>;
     getFromDateAndOlder(postDate: TPostDate): Promise<IStoredPost[]>;
     getFromDateAndMoreRecent(postDate: TPostDate): Promise<IStoredPost[]>;
 }
