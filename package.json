@@ -28,6 +28,7 @@
     "chai-as-promised": "^7.1.1",
     "cross-env": "^6.0.3",
     "css-loader": "^3.4.0",
+    "dexie": "^2.0.4",
     "electron": "^7.1.7",
     "electron-mocha": "^8.1.2",
     "file-loader": "^5.0.2",
@@ -49,8 +50,5 @@
     "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10",
     "webpackbar": "^4.0.0"
-  },
-  "dependencies": {
-    "remove": "^0.1.5"
   }
 }

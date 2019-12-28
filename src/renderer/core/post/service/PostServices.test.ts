@@ -1,9 +1,11 @@
-import { expect } from "../../../../test/chai";
+import { expect } from "../../../../../test/chai";
 import { PostRepository } from "./PostRepository";
 import { PostFinder } from "./PostFinder";
+import { PostStorage } from "../storage/PostStorage";
 
-const postRepository = new PostRepository();
-const postFinder = new PostFinder();
+const postStorage = new PostStorage();
+const postRepository = new PostRepository(postStorage);
+const postFinder = new PostFinder(postStorage);
 
 describe("post storage services", () => {
     beforeEach(() => {
@@ -11,18 +13,14 @@ describe("post storage services", () => {
     });
 
     it("can store a post and then retrieve it", async () => {
-        const postId = await postRepository.addPost({
+        const postData = {
             title: "post-title",
             author: "post-author",
             content: "post-content",
-        });
+        };
+        const postId = await postRepository.addPost(postData);
         const storedPost = await postFinder.getPostById(postId);
-        expect(storedPost).to.equal({
-            id: postId,
-            title: "post-title",
-            author: "post-author",
-            content: "post-content",
-        });
+        expect(storedPost).to.deep.include(postData);
     });
 
     it("can get all stored posts", async () => {
@@ -34,8 +32,8 @@ describe("post storage services", () => {
         expect(allStoredPosts).to.have.length(2);
         const storedPost1 = await postFinder.getPostById(post1Id);
         const storedPost2 = await postFinder.getPostById(post2Id);
-        expect(storedPost1).to.equal(post1);
-        expect(storedPost2).to.equal(post2);
+        expect(storedPost1).to.deep.include(post1);
+        expect(storedPost2).to.deep.include(post2);
     });
 
     it("can clear posts storage", async () => {
@@ -45,7 +43,7 @@ describe("post storage services", () => {
         await postRepository.addPost(post2);
         await postRepository.clear();
         const allStoredPosts = await postFinder.getAllPosts();
-        expect(allStoredPosts).to.equal([]);
+        expect(allStoredPosts).to.deep.equal([]);
     });
 
     it("can update post title", async () => {
@@ -56,8 +54,7 @@ describe("post storage services", () => {
         });
         await postRepository.updatePostTitle(postId, "new-post-title");
         const storedPost = await postFinder.getPostById(postId);
-        expect(storedPost).to.equal({
-            id: postId,
+        expect(storedPost).to.deep.include({
             title: "new-post-title",
             author: "post-author",
             content: "post-content",
@@ -72,9 +69,8 @@ describe("post storage services", () => {
         });
         await postRepository.updatePostContent(postId, "new-post-content");
         const storedPost = await postFinder.getPostById(postId);
-        expect(storedPost).to.equal({
-            id: postId,
-            title: "new-post-title",
+        expect(storedPost).to.deep.include({
+            title: "post-title",
             author: "post-author",
             content: "new-post-content",
         });
@@ -90,8 +86,8 @@ describe("post storage services", () => {
         const postNextTo1 = await postFinder.getNextPost(post1Id);
         const postNextTo2 = await postFinder.getNextPost(post2Id);
         const postNextTo3 = await postFinder.getNextPost(post3Id);
-        expect(postNextTo1).to.equal(post2);
-        expect(postNextTo2).to.equal(post3);
+        expect(postNextTo1).to.deep.include(post2);
+        expect(postNextTo2).to.deep.include(post3);
         expect(postNextTo3).to.be.undefined();
     });
 
@@ -106,7 +102,7 @@ describe("post storage services", () => {
         const postPrevTo2 = await postFinder.getPrevPost(post2Id);
         const postPrevTo3 = await postFinder.getPrevPost(post3Id);
         expect(postPrevTo1).to.be.undefined();
-        expect(postPrevTo2).to.equal(post1);
-        expect(postPrevTo3).to.equal(post2);
+        expect(postPrevTo2).to.deep.include(post1);
+        expect(postPrevTo3).to.deep.include(post2);
     });
 });
