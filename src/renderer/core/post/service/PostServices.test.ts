@@ -86,6 +86,17 @@ describe("post storage services", () => {
         });
     });
 
+    it("can delete a post", async () => {
+        const postId = await postRepository.addPost({
+            title: "post-title",
+            author: "post-author",
+            content: "post-content",
+        });
+        await postRepository.deletePost(postId);
+        const storedPosts = await postFinder.getAllPosts();
+        expect(storedPosts).to.be.empty;
+    });
+
     it("can get next post", async () => {
         const post1 = { title: "post-title-1", author: "post-author", content: "post-content-1" };
         const post2 = { title: "post-title-2", author: "post-author", content: "post-content-2" };

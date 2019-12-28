@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import { AppContext, IAppContext } from "../../AppContext";
 import { IPostPagePostInfo } from "./IPostPagePostInfo";
+import { boundMethod } from "autobind-decorator";
 
 const styles = require("./SinglePostPage.scss");
 
@@ -60,12 +61,29 @@ class SinglePostPage extends React.Component<ISinglePostPageProps, ISinglePostPa
     });
   }
 
+  @boundMethod
+  onDeletePostClick(event: React.MouseEvent<HTMLAnchorElement>) {
+    const postRepository = this.context.core.postRepository;
+
+    if (confirm("Вы уверены, что хотите удалить пост?")) {
+      postRepository.deletePost(this.state.post.id);
+    }
+
+    this.props.history.push("/");
+
+    event.preventDefault();
+    return false;
+  }
+
   render() {
     const { post, prevPost, nextPost } = this.state;
     return (
       <div>
         <div>
           <Link to={`/edit-post/${post.id}`}>Редактировать</Link>
+        </div>
+        <div>
+          <a href={""} onClick={this.onDeletePostClick}>Удалить пост</a>
         </div>
         <div>{post.title}</div>
         <div>{post.author}</div>

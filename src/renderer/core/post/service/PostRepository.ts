@@ -25,6 +25,11 @@ export class PostRepository implements IPostRepository {
         return this.storage.update(postId, { title });
     }
 
+    async deletePost(postId: number): Promise<void> {
+        console.log(`deleting post ${postId}`);
+        return this.storage.remove(postId);
+    }
+
     async clear(): Promise<void> {
         return this.storage.clear();
     }
