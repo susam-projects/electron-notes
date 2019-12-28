@@ -1,26 +1,33 @@
 import * as React from "react";
-import { boundMethod } from "autobind-decorator";
 import { PostInfoCard } from "./PostInfoCard/PostInfoCard";
-import { AppContextConsumer, IAppContext } from "../../AppContext";
+import { AppContext, IAppContext } from "../../AppContext";
+import { IPostListPostInfo } from "./IPostListPostInfo";
 
 const styles = require("./PostListPage.scss");
 
-class PostListPage extends React.Component {
-  render() {
-    return <AppContextConsumer children={this.renderContent} />;
+interface IPostListPageState {
+  posts: IPostListPostInfo[];
+}
+
+class PostListPage extends React.Component<{}, IPostListPageState> {
+  static contextType = AppContext;
+  context: IAppContext;
+  state: IPostListPageState = {
+    posts: [],
+  };
+
+  async componentDidMount() {
+    const allPosts = await this.context.core.postFinder.getAllPosts();
+    this.setState({ posts: allPosts });
   }
 
-  @boundMethod
-  renderContent({ core }: IAppContext) {
-    const posts = core.postFinder.getAllPosts();
+  render() {
+    const { posts } = this.state;
     return (
       <div>
         <ul className={styles.list}>
           {posts.map((post) => (
-            <li
-              key={post.id}
-              className={styles.listItem}
-            >
+            <li key={post.id} className={styles.listItem}>
               <PostInfoCard post={post} />
             </li>
           ))}

@@ -4,7 +4,7 @@ import { Core } from "../core/Core";
 export interface IAppContext {
   core: Core;
 }
-const { Provider, Consumer } = React.createContext<IAppContext>({} as IAppContext);
+export const AppContext = React.createContext<IAppContext>({} as IAppContext);
 
 interface IAppContextProviderProps {
   core: Core;
@@ -13,8 +13,8 @@ interface IAppContextProviderProps {
 export class AppContextProvider extends React.Component<IAppContextProviderProps> {
   render() {
     const { core, children } = this.props;
-    return <Provider value={{ core }}>{children}</Provider>;
+    return <AppContext.Provider value={{ core }}>{children}</AppContext.Provider>;
   }
 }
 
-export const AppContextConsumer = Consumer;
+export const AppContextConsumer = AppContext.Consumer;

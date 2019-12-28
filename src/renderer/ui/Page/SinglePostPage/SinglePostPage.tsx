@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
-import { AppContextConsumer, IAppContext } from "../../AppContext";
-import { boundMethod } from "autobind-decorator";
+import { AppContext, IAppContext } from "../../AppContext";
+import { IPostPagePostInfo } from "./IPostPagePostInfo";
 
 const styles = require("./SinglePostPage.scss");
 
@@ -11,33 +11,72 @@ interface ISinglePostPageUrlParams {
 
 interface ISinglePostPageProps extends RouteComponentProps<ISinglePostPageUrlParams> {}
 
-class SinglePostPage extends React.Component<ISinglePostPageProps> {
-  private postId: string;
+interface ISinglePostPageState {
+  post: IPostPagePostInfo;
+  nextPost?: IPostPagePostInfo;
+  prevPost?: IPostPagePostInfo;
+}
 
-  render() {
-    const { id: postId } = this.props.match.params;
-    console.log(`rendering post ${postId}`);
-    this.postId = postId;
-    return <AppContextConsumer children={this.renderContent} />;
+class SinglePostPage extends React.Component<ISinglePostPageProps, ISinglePostPageState> {
+  static contextType = AppContext;
+  context: IAppContext;
+  state: ISinglePostPageState = {
+    post: {} as IPostPagePostInfo,
+    nextPost: undefined,
+    prevPost: undefined,
+  };
+
+  componentDidMount() {
+    this.loadPosts();
   }
 
-  @boundMethod
-  renderContent({ core }: IAppContext) {
-    const postId = this.postId;
-    const postInfo = core.postFinder.getPostById(postId);
-    const nextPostInfo = core.postFinder.getNextPost(postId);
-    const prevPostInfo = core.postFinder.getPrevPost(postId);
+  componentDidUpdate(prevProps: Readonly<ISinglePostPageProps>) {
+    if (this.props.location !== prevProps.location) {
+      this.onRouteChanged();
+    }
+  }
+
+  onRouteChanged() {
+    this.loadPosts();
+  }
+
+  async loadPosts() {
+    const postFinder = this.context.core.postFinder;
+    const { id } = this.props.match.params;
+    const postId = parseInt(id, 10);
+    const post =
+      (await postFinder.getPostById(postId)) ??
+      ({
+        title: "",
+        author: "",
+        content: "",
+      } as IPostPagePostInfo);
+    const nextPost = await postFinder.getNextPost(postId);
+    const prevPost = await postFinder.getPrevPost(postId);
+    this.setState({
+      post,
+      nextPost,
+      prevPost,
+    });
+  }
+
+  render() {
+    const { post, prevPost, nextPost } = this.state;
     return (
       <div>
-        <div>{postInfo.title}</div>
-        <div>{postInfo.author}</div>
-        <div>{postInfo.content}</div>
+        <div>{post.title}</div>
+        <div>{post.author}</div>
+        <div>{post.content}</div>
         <div>
           <Link to={"/"}>На список постов</Link>
         </div>
         <div className={styles.nextPrevContainer}>
-          {prevPostInfo && <Link to={`/post/${prevPostInfo.id}`}>{prevPostInfo.title}</Link>}
-          {nextPostInfo && <Link to={`/post/${nextPostInfo.id}`}>{nextPostInfo.title}</Link>}
+          <div style={{ flexGrow: 1, display: "flex", justifyContent: "flex-start" }}>
+            {prevPost && <Link to={`/post/${prevPost.id}`}>{prevPost.title}</Link>}
+          </div>
+          <div style={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}>
+            {nextPost && <Link to={`/post/${nextPost.id}`}>{nextPost.title}</Link>}
+          </div>
         </div>
       </div>
     );

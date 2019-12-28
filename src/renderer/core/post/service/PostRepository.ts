@@ -6,7 +6,7 @@ import { IPostData } from "./IStoredPost";
 export class PostRepository implements IPostRepository {
     constructor(private readonly storage: IPostStorage) {}
 
-    async addPost(postInfo: ICreatePostInfo): Promise<string> {
+    async addPost(postInfo: ICreatePostInfo): Promise<number> {
         const postData: IPostData = {
             ...postInfo,
             postDate: Date.now(),
@@ -14,11 +14,11 @@ export class PostRepository implements IPostRepository {
         return this.storage.add(postData);
     }
 
-    async updatePostContent(postId: string, content: string): Promise<void> {
+    async updatePostContent(postId: number, content: string): Promise<void> {
         return this.storage.update(postId, { content });
     }
 
-    async updatePostTitle(postId: string, title: string): Promise<void> {
+    async updatePostTitle(postId: number, title: string): Promise<void> {
         return this.storage.update(postId, { title });
     }
 

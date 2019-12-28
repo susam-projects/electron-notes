@@ -2,7 +2,7 @@ export interface IStoredPost extends IPostData {
     id: TPostId;
 }
 
-export type TPostId = string;
+export type TPostId = number;
 
 export interface IPostData {
     title: string;

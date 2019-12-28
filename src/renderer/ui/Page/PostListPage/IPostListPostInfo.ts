@@ -1,5 +1,5 @@
 export interface IPostListPostInfo {
-    id: string;
+    id: number;
     title: string;
     content: string;
     author: string;

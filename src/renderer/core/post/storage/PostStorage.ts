@@ -12,7 +12,7 @@ export class PostStorage implements IPostStorage {
         });
     }
 
-    add(post: IPostData): Promise<string> {
+    add(post: IPostData): Promise<TPostId> {
         return this.table.add(post);
     }
 
