@@ -1,14 +1,6 @@
-import { IPostPagePostInfo } from "../ui/Page/SinglePostPage/IPostPagePostInfo";
-import { IPostListPostInfo } from "../ui/Page/PostListPage/IPostListPostInfo";
-import { IPostFinder } from "../ui/Page/IPostFinder";
-
-export class Core {
-    readonly postFinder: IPostFinder;
-
-    constructor() {
-        this.postFinder = new PostFinder();
-    }
-}
+import { IPostFinder } from "../../ui/Page/IPostFinder";
+import { IPostListPostInfo } from "../../ui/Page/PostListPage/IPostListPostInfo";
+import { IPostPagePostInfo } from "../../ui/Page/SinglePostPage/IPostPagePostInfo";
 
 export class PostFinder implements IPostFinder {
     getAllPosts(): IPostListPostInfo[] {

@@ -7,7 +7,7 @@
   ],
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": ".",
     "baseUrl": ".",
     "sourceMap": true,
     "noEmitOnError": false,

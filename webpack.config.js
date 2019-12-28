@@ -10,6 +10,14 @@ function srcPath(dir = '') {
     return rootPath('src/' + dir);
 }
 
+function mainPath(dir = '') {
+    return srcPath('main/' + dir);
+}
+
+function rendererPath(dir = '') {
+    return srcPath('renderer/' + dir);
+}
+
 function distPath(dir = '') {
     return rootPath('dist/' + dir);
 }
@@ -17,12 +25,12 @@ function distPath(dir = '') {
 module.exports = [
     {
         mode: 'development',
-        entry: './src/main.ts',
+        entry: mainPath('main.ts'),
         target: 'electron-main',
         module: {
             rules: [{
                 test: /\.ts$/,
-                include: rootPath('src'),
+                include: mainPath(),
                 use: [{ loader: 'ts-loader' }]
             }]
         },
@@ -54,7 +62,7 @@ module.exports = [
     },
     {
         mode: 'development',
-        entry: './src/index.tsx',
+        entry: rendererPath('index.tsx'),
         target: 'electron-renderer',
         devtool: 'source-map',
         output: {
@@ -64,12 +72,12 @@ module.exports = [
         plugins: [
             new WebpackBar(),
             new HtmlWebpackPlugin({
-                template: srcPath('index.html')
+                template: rendererPath('index.html')
             })
         ],
         resolve: {
             extensions: ['.js', '.ts', '.tsx'],
-            modules: [srcPath(), 'node_modules'],
+            modules: [rendererPath(), 'node_modules'],
             symlinks: false
         },
         stats: {
@@ -88,7 +96,7 @@ module.exports = [
         module: {
             rules: [{
                 test: /\.ts(x?)$/,
-                include: srcPath(),
+                include: rendererPath(),
                 use: [{ loader: 'ts-loader' }]
             }, {
                 test: /\.(s?)css$/,
@@ -124,7 +132,7 @@ module.exports = [
                     }
                 }]
             }, {
-                enforce: "pre",
+                enforce: 'pre',
                 test: /\.jsx?$/,
                 use: [{
                     loader: 'source-map-loader'
