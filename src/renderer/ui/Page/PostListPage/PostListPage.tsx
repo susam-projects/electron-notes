@@ -4,6 +4,7 @@ import { AppContext, IAppContext } from "../../AppContext";
 import { IPostListPostInfo } from "./IPostListPostInfo";
 import { boundMethod } from "autobind-decorator";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+import Pager from "../../BaseComponents/Pager/Pager";
 
 const styles = require("./PostListPage.scss");
 
@@ -28,16 +29,44 @@ class PostListPage extends React.Component<IPostListPageProps, IPostListPageStat
   render() {
     const { posts } = this.state;
     return (
-      <div>
-        <button onClick={this.onAddNewPostClick}>Новый пост</button>
-        <ul className={styles.list}>
-          {posts.map((post) => (
-            <li key={post.id} className={styles.listItem}>
-              <PostInfoCard post={post} />
-            </li>
-          ))}
-        </ul>
-      </div>
+      <>
+        <header className="header-section ">
+          <div className="intro-header no-img">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <div className="page-heading">
+                    <h1>Актуальные записи</h1>
+                    <hr className="small" />
+                    <span className="page-subheading">Самовыражение и свобода мысли!</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div className="container" role="main">
+          <div className="row">
+            <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+              <button onClick={this.onAddNewPostClick}>Новый пост</button>
+
+              <div className="posts-list">
+                {posts.map((post) => (
+                  <PostInfoCard post={post} key={post.id} />
+                ))}
+              </div>
+
+              <Pager
+                nextBtnText="Предыдущие записи"
+                prevBtnText="Новые записи"
+                nextBtnLink={`/post-list/page/1`}
+                prevBtnLink={`/post-list/page/2`}
+              />
+            </div>
+          </div>
+        </div>
+      </>
     );
   }
 

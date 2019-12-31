@@ -10,10 +10,12 @@ installExtension(REACT_DEVELOPER_TOOLS)
 // автоматически закрываться, когда объект JavaScript собирает мусор.
 let win: BrowserWindow | null;
 
+const mode = "dev";
+
 function createWindow() {
     win = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1600,
+        height: 900,
         webPreferences: {
             nodeIntegration: true,
         },
@@ -21,7 +23,9 @@ function createWindow() {
 
     win.loadFile("index.html");
 
-    // win.webContents.openDevTools();
+    if (mode == "dev") {
+        win.webContents.openDevTools();
+    }
 
     win.on("closed", () => {
         win = null;

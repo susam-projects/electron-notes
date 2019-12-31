@@ -1,6 +1,7 @@
 import * as React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { Core } from "../core/Core";
+import "./global.scss";
 import "./AppUI.scss";
 import { AppContextProvider } from "./AppContext";
 import { AppLayout } from "./Layout/AppLayout";
@@ -19,9 +20,10 @@ export const AppUi: React.FC<IAppUiProps> = ({ core }) => {
         <AppLayout
           page={
             <Switch>
-              <Route path={"/post/:id"} component={SinglePostPage} />
-              <Route path={"/edit-post/:id"} component={EditPostPage} />
-              <Route path={"/"} component={PostListPage} />
+              <Route path="/post/:id" component={SinglePostPage} />
+              <Route path="/edit-post/:id" component={EditPostPage} />
+              <Route path="/post-list/page/:id" component={PostListPage} />
+              <Redirect to="/post-list/page/1" />
             </Switch>
           }
         />

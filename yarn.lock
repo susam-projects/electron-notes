@@ -24,6 +24,31 @@
     global-agent "^2.0.2"
     global-tunnel-ng "^2.7.1"
 
+"@fortawesome/fontawesome-free@^5.12.0":
+  version "5.12.0"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.12.0.tgz#8ceb9f09edfb85ea18a6c7bf098f6f5dd5ffd62b"
+  integrity sha512-vKDJUuE2GAdBERaQWmmtsciAMzjwNrROXA5KTGSZvayAsmuTGjam5z6QNqNPCwDfVljLWuov1nEC3mEQf/n6fQ==
+
+"@openfonts/lora_cyrillic@^1.44.0":
+  version "1.44.0"
+  resolved "https://registry.yarnpkg.com/@openfonts/lora_cyrillic/-/lora_cyrillic-1.44.0.tgz#de5213daf77d892ddc866adc067b74365e091c95"
+  integrity sha512-RtnmOLGGP7PoYh0/yRqztHxySSBztUPUG7OlfpEOgBwlfHM1Hwv7PCs0RP0REP83D78WjqufMrylqJOZ33QW0w==
+
+"@openfonts/lora_latin@^1.44.0":
+  version "1.44.0"
+  resolved "https://registry.yarnpkg.com/@openfonts/lora_latin/-/lora_latin-1.44.0.tgz#c84ccac2c7a68bf7bd85853dd2231734bb021a44"
+  integrity sha512-YKjVsVPnN/FPJx2kEJCF4A2gHes2dZWw0ButvTZ90oHc7fHHU+jHhA/4CSkP03Z9zMm2wCDfqALx4rWZP1Di/Q==
+
+"@openfonts/open-sans_cyrillic@^1.44.0":
+  version "1.44.0"
+  resolved "https://registry.yarnpkg.com/@openfonts/open-sans_cyrillic/-/open-sans_cyrillic-1.44.0.tgz#32176b8e316a60d5451de1402f468ff32901cfec"
+  integrity sha512-fiLNsdP4Bg0JpMQeMG4MH/ztsnU5ITyIYi7grsoaxrIdLjYGGNGWWbvsoMmK616YKERUFIlqk9OdemG1Bgv2Pw==
+
+"@openfonts/open-sans_latin@^1.44.0":
+  version "1.44.0"
+  resolved "https://registry.yarnpkg.com/@openfonts/open-sans_latin/-/open-sans_latin-1.44.0.tgz#1142f9efe639f04dd565642559a917113e0d1590"
+  integrity sha512-rzk9JG55PKWpiNubPWVZYpigaFRYof82WacK5DNRwk3iZmtztBxgRge0ljcQyxQnH2BHz4kIaylb9YFpLPxFiw==
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
@@ -588,6 +613,11 @@ boolean@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/boolean/-/boolean-3.0.0.tgz#fab78d5907dbae6216ab46d32733bb7b76b99e76"
   integrity sha512-OElxJ1lUSinuoUnkpOgLmxp0DC4ytEhODEL6QJU0NpxE/mI4rUSh8h1P1Wkvfi3xQEBcxXR2gBIPNYNuaFcAbQ==
+
+bootstrap@3.3.7:
+  version "3.3.7"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
+  integrity sha1-WjiTlFSfIzMIdaOxUGVldPip63E=
 
 brace-expansion@^1.1.7:
   version "1.1.11"

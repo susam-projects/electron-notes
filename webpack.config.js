@@ -99,7 +99,30 @@ module.exports = [
                 include: rendererPath(),
                 use: [{ loader: 'ts-loader' }]
             }, {
+                test: /(\.?)global\.(s?)css/,
+                use: [{
+                    loader: 'style-loader'
+                }, {
+                    loader: 'css-loader',
+                    options: {
+                        importLoaders: 1,
+                        sourceMap: true,
+                        modules: false
+                    }
+                }, {
+                    loader: 'sass-loader',
+                    options: {
+                        sourceMap: true,
+                        sassOptions: {
+                            includePaths: [
+                                rootPath('node_modules')
+                            ]
+                        }
+                    }
+                }]
+            }, {
                 test: /\.(s?)css$/,
+                exclude: /(\.?)global\.(s?)css/,
                 use: [{
                     loader: 'style-loader'
                 }, {
@@ -123,12 +146,7 @@ module.exports = [
                 }, {
                     loader: 'sass-loader',
                     options: {
-                        sourceMap: true,
-                        sassOptions: {
-                            includePaths: [
-                                rootPath('node_modules')
-                            ]
-                        }
+                        sourceMap: true
                     }
                 }]
             }, {
@@ -137,7 +155,12 @@ module.exports = [
                 use: [{
                     loader: 'source-map-loader'
                 }]
-            },]
+            }, {
+                test: /\.(ttf|woff|woff2|svg|eot)/,
+                use: [{
+                    loader: 'file-loader'
+                }]
+            }]
         }
     }
 ];

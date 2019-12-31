@@ -6,9 +6,17 @@ import { IPostStorage } from "./IPostStorage";
 export class PostFinder implements IPostFinder {
     constructor(private readonly storage: IPostStorage) {}
 
-    getAllPosts(): Promise<IPostListPostInfo[]> {
+    async getAllPosts(): Promise<IPostListPostInfo[]> {
         console.log(`getting all posts`);
-        return this.storage.getAllReversed();
+        const storedPosts = await this.storage.getAllReversed();
+        return storedPosts.map((storedPost) => ({
+            id: storedPost.id,
+            author: storedPost.author,
+            title: storedPost.title,
+            subtitle: "",
+            content: storedPost.content,
+            postDate: storedPost.postDate,
+        }));
     }
 
     getPostById(id: number): Promise<IPostPagePostInfo | undefined> {
@@ -23,7 +31,7 @@ export class PostFinder implements IPostFinder {
         if (!post) return;
 
         const postsFromDate = await this.storage.getFromDateAndMoreRecent(post.postDate);
-        const moreRecentPosts = postsFromDate.filter(post => post.id !== postId);
+        const moreRecentPosts = postsFromDate.filter((post) => post.id !== postId);
         return moreRecentPosts[0];
     }
 
@@ -34,7 +42,7 @@ export class PostFinder implements IPostFinder {
         if (!post) return;
 
         const postsFromDate = await this.storage.getFromDateAndOlder(post.postDate);
-        const olderPosts = postsFromDate.filter(post => post.id !== postId);
+        const olderPosts = postsFromDate.filter((post) => post.id !== postId);
         return olderPosts[olderPosts.length - 1];
     }
 }
