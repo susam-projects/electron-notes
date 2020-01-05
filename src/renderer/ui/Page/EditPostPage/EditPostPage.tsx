@@ -107,7 +107,7 @@ class EditPostPage extends React.Component<IEditPostPageProps, IEditPostPageStat
                   defaultValue={content}
                   inputRef={this.contentInputRef}
                   onChange={this.onContentChange}
-                  placeholder="В посте пока ничего нет..."
+                  placeholder="В тексте поста пока ничего нет..."
                   minRows={1}
                 />
               </div>
