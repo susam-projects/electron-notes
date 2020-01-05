@@ -5,7 +5,6 @@ import { IPostPagePostInfo } from "../SinglePostPage/IPostPagePostInfo";
 import { debounce, clone, isUndefined } from "lodash";
 import PostMeta from "../../BaseComponents/PostMeta/PostMeta";
 import classNames from "classnames";
-import TextareaAutosize from "react-textarea-autosize";
 import BBCodeEditor from "./BBCodeEditor/BBCodeEditor";
 
 const styles = require("./EditPostPage.scss");
@@ -42,7 +41,6 @@ class EditPostPage extends React.Component<IEditPostPageProps, IEditPostPageStat
 
   titleInputRef = React.createRef<HTMLInputElement>();
   subtitleInputRef = React.createRef<HTMLInputElement>();
-  contentInputRef = React.createRef<HTMLTextAreaElement>();
 
   async componentDidMount() {
     const postFinder = this.context.core.postFinder;
@@ -103,15 +101,12 @@ class EditPostPage extends React.Component<IEditPostPageProps, IEditPostPageStat
                 />
               </div>
               <div>
-                {/*<TextareaAutosize*/}
-                {/*  className={classNames("form-control", styles.input, styles.content)}*/}
-                {/*  defaultValue={content}*/}
-                {/*  inputRef={this.contentInputRef}*/}
-                {/*  onChange={this.onContentChange}*/}
-                {/*  placeholder="В тексте поста пока ничего нет..."*/}
-                {/*  minRows={1}*/}
-                {/*/>*/}
-                <BBCodeEditor className={classNames("form-control", styles.input, styles.content)} />
+                <BBCodeEditor
+                  className={classNames("form-control", styles.input, styles.content)}
+                  defaultValue={content}
+                  onChange={this.onContentChange}
+                  minRows={10}
+                />
               </div>
 
               <ul className="pager blog-pager end-edit">
@@ -143,10 +138,9 @@ class EditPostPage extends React.Component<IEditPostPageProps, IEditPostPageStat
     // await postRepository.updatePostSubtitle(postId, subtitle);
   });
 
-  onContentChange = debounceEditPostInput(async () => {
+  onContentChange = debounceEditPostInput(async (content) => {
     const postRepository = this.context.core.postRepository;
     const postId = this.state.id;
-    const content = this.contentInputRef.current?.value;
     if (isUndefined(content)) return;
     await postRepository.updatePostContent(postId, content);
   });

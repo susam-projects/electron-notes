@@ -89,8 +89,9 @@ module.exports = [
                 template: rendererPath('index.html')
             }),
             new CopyPlugin([
-                { from: rootPath('node_modules/sceditor/minified'), to: distRendererPath('sceditor') },
-                { from: rootPath('node_modules/sceditor/emoticons'), to: distRendererPath('emoticons') }
+                { from: rootPath('node_modules/sceditor/minified'), to: distRendererPath('sceditor/minified') },
+                { from: rootPath('node_modules/sceditor/emoticons'), to: distRendererPath('sceditor/emoticons') },
+                { from: rootPath('node_modules/sceditor/languages'), to: distRendererPath('sceditor/languages') },
             ])
         ],
         resolve: {
