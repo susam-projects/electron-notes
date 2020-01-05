@@ -26,12 +26,13 @@ class BBCodeEditor extends React.Component<IBBCodeEditorProps> {
       locale: "ru",
       icons: "monocons",
       emoticonsRoot: "sceditor/",
-      style: 'sceditor/minified/themes/default.min.css',
+      style: "sceditor/minified/themes/default.min.css",
       resizeEnabled: false,
       autoExpand: true,
       emoticonsCompat: true,
       toolbarExclude: "print,maximize,source",
-      fonts: "Lora,Arial,Arial Black,Comic Sans MS,Courier New,Georgia,Impact,Sans-serif,Serif,Times New Roman,Trebuchet MS,Verdana"
+      fonts:
+        "Lora,Arial,Arial Black,Comic Sans MS,Courier New,Georgia,Impact,Sans-serif,Serif,Times New Roman,Trebuchet MS,Verdana",
       // plugins: "plaintext",
       // pastetext: {
       //   addButton: true,
