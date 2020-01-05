@@ -6,6 +6,7 @@ import { debounce, clone, isUndefined } from "lodash";
 import PostMeta from "../../BaseComponents/PostMeta/PostMeta";
 import classNames from "classnames";
 import TextareaAutosize from "react-textarea-autosize";
+import BBCodeEditor from "./BBCodeEditor/BBCodeEditor";
 
 const styles = require("./EditPostPage.scss");
 
@@ -102,14 +103,15 @@ class EditPostPage extends React.Component<IEditPostPageProps, IEditPostPageStat
                 />
               </div>
               <div>
-                <TextareaAutosize
-                  className={classNames("form-control", styles.input, styles.content)}
-                  defaultValue={content}
-                  inputRef={this.contentInputRef}
-                  onChange={this.onContentChange}
-                  placeholder="В тексте поста пока ничего нет..."
-                  minRows={1}
-                />
+                {/*<TextareaAutosize*/}
+                {/*  className={classNames("form-control", styles.input, styles.content)}*/}
+                {/*  defaultValue={content}*/}
+                {/*  inputRef={this.contentInputRef}*/}
+                {/*  onChange={this.onContentChange}*/}
+                {/*  placeholder="В тексте поста пока ничего нет..."*/}
+                {/*  minRows={1}*/}
+                {/*/>*/}
+                <BBCodeEditor className={classNames("form-control", styles.input, styles.content)} />
               </div>
 
               <ul className="pager blog-pager end-edit">

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, HashRouter } from "react-router-dom";
 import { Core } from "../core/Core";
 import "./global.scss";
 import "./AppUI.scss";
@@ -18,7 +18,7 @@ interface IAppUiProps {
 
 export const AppUi: React.FC<IAppUiProps> = ({ core }) => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AppContextProvider core={core}>
         <AppLayout
           page={
@@ -31,6 +31,6 @@ export const AppUi: React.FC<IAppUiProps> = ({ core }) => {
           }
         />
       </AppContextProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
