@@ -30,7 +30,7 @@
     "@types/react-textarea-autosize": "^4.3.5",
     "autobind-decorator": "^2.4.0",
     "autoprefixer": "^9.7.3",
-    "bootstrap": "3.3.7",
+    "bootstrap": "3.4.1",
     "chai": "^4.2.0",
     "chai-arrays": "^2.0.0",
     "chai-as-promised": "^7.1.1",
