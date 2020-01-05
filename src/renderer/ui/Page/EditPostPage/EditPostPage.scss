@@ -1,0 +1,28 @@
+.input, .input:focus {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border: none;
+  box-shadow: none;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 50px;
+  line-height: 1.1;
+  height: 1.1 * 50px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-weight: 300;
+  font-size: 27px;
+  line-height: 1.1;
+  height: 1.1 * 27px;
+  margin-bottom: 20px;
+}
+
+.content, .content:focus {
+  font-family: inherit;
+  font-size: 18px;
+  line-height: 1.5;
+  resize: none;
+}

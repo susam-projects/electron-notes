@@ -608,6 +608,32 @@
     }
   }
 
+  /* --- New post --- */
+
+  .pager.new-post li a {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 10px 5px;
+    background: #0085a1;
+    border: 1px solid #0085a1;
+    border-radius: 0;
+    color: #fff;
+  }
+  @media only screen and (min-width: 768px) {
+    .pager.new-post li a {
+      padding: 15px 25px;
+    }
+  }
+  .pager.new-post li a:hover,
+  .pager.new-post li a:focus {
+    background: #1E6A79;
+    border-color: #1E6A79;
+  }
+
+
   /* --- Pager --- */
 
   .pager li a {

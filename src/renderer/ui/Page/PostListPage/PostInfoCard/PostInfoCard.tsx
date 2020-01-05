@@ -2,6 +2,7 @@ import * as React from "react";
 import { truncate } from "lodash";
 import { Link } from "react-router-dom";
 import { IPostListPostInfo } from "../IPostListPostInfo";
+import PostMeta from "../../../BaseComponents/PostMeta/PostMeta";
 
 const styles = require("./PostInfoCard.scss");
 
@@ -25,12 +26,11 @@ export class PostInfoCard extends React.Component<IPostInfoCardProps> {
         </Link>
 
         <p className="post-meta">
-          <span className="post-meta">
-            <i className="fas fa-calendar"></i>&nbsp;Опубликовано {formatDate(post.postDate)}
-            &nbsp;|&nbsp;<i className="fas fa-clock"></i>&nbsp;2&nbsp;минут &nbsp;|&nbsp;
-            <i className="fas fa-book"></i>&nbsp;275&nbsp;слова &nbsp;|&nbsp;
-            <i className="fas fa-user"></i>&nbsp;{post.author}
-          </span>
+          <PostMeta
+            postDate={post.postDate}
+            author={post.author}
+            contentLength={post.content.length}
+          />
         </p>
         <div className="post-entry">
           {post.content}
@@ -44,5 +44,5 @@ export class PostInfoCard extends React.Component<IPostInfoCardProps> {
 }
 
 function formatDate(date: number) {
-  return (new Date(date)).toLocaleDateString();
+  return new Date(date).toLocaleDateString();
 }

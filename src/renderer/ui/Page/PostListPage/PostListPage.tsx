@@ -3,7 +3,7 @@ import { PostInfoCard } from "./PostInfoCard/PostInfoCard";
 import { AppContext, IAppContext } from "../../AppContext";
 import { IPostListPostInfo } from "./IPostListPostInfo";
 import { boundMethod } from "autobind-decorator";
-import { withRouter, RouteComponentProps } from "react-router-dom";
+import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import Pager from "../../BaseComponents/Pager/Pager";
 
 const styles = require("./PostListPage.scss");
@@ -49,7 +49,13 @@ class PostListPage extends React.Component<IPostListPageProps, IPostListPageStat
         <div className="container" role="main">
           <div className="row">
             <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-              <button onClick={this.onAddNewPostClick}>Новый пост</button>
+              <ul className="pager new-post">
+                <li className="previous">
+                  <a href="#" onClick={this.onAddNewPostClick}>
+                    Новый пост
+                  </a>
+                </li>
+              </ul>
 
               <div className="posts-list">
                 {posts.map((post) => (
@@ -58,10 +64,9 @@ class PostListPage extends React.Component<IPostListPageProps, IPostListPageStat
               </div>
 
               <Pager
-                nextBtnText="Предыдущие записи"
-                prevBtnText="Новые записи"
-                nextBtnLink={`/post-list/page/1`}
-                prevBtnLink={`/post-list/page/2`}
+                className="main-pager"
+                nextBtnLink={<Link to={`/post-list/page/1`}>Новые записи&rarr;</Link>}
+                prevBtnLink={<Link to={`/post-list/page/2`}>&larr;Предыдущие записи</Link>}
               />
             </div>
           </div>
@@ -71,7 +76,8 @@ class PostListPage extends React.Component<IPostListPageProps, IPostListPageStat
   }
 
   @boundMethod
-  async onAddNewPostClick(event: React.MouseEvent<HTMLButtonElement>) {
+  async onAddNewPostClick(event: React.MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault();
     const postRepository = this.context.core.postRepository;
 
     const newPostId = await postRepository.addPost({
@@ -81,6 +87,8 @@ class PostListPage extends React.Component<IPostListPageProps, IPostListPageStat
     });
 
     this.props.history.push(`/edit-post/${newPostId}`);
+
+    return false;
   }
 }
 

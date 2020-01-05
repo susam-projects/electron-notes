@@ -8,6 +8,9 @@ import { AppLayout } from "./Layout/AppLayout";
 import PostListPage from "./Page/PostListPage/PostListPage";
 import SinglePostPage from "./Page/SinglePostPage/SinglePostPage";
 import EditPostPage from "./Page/EditPostPage/EditPostPage";
+import * as moment from "moment";
+
+moment.locale("ru");
 
 interface IAppUiProps {
   core: Core;

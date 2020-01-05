@@ -3,6 +3,8 @@ import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import { AppContext, IAppContext } from "../../AppContext";
 import { IPostPagePostInfo } from "./IPostPagePostInfo";
 import { boundMethod } from "autobind-decorator";
+import Pager from "../../BaseComponents/Pager/Pager";
+import PostMeta from "../../BaseComponents/PostMeta/PostMeta";
 
 const styles = require("./SinglePostPage.scss");
 
@@ -22,7 +24,14 @@ class SinglePostPage extends React.Component<ISinglePostPageProps, ISinglePostPa
   static contextType = AppContext;
   context: IAppContext;
   state: ISinglePostPageState = {
-    post: {} as IPostPagePostInfo,
+    post: {
+      id: 0,
+      title: "",
+      subtitle: "",
+      author: "",
+      content: "",
+      postDate: 0,
+    } as IPostPagePostInfo,
     nextPost: undefined,
     prevPost: undefined,
   };
@@ -86,13 +95,11 @@ class SinglePostPage extends React.Component<ISinglePostPageProps, ISinglePostPa
                   <div className="post-heading">
                     <h1>{post.title}</h1>
                     <h2 className="post-subheading">{post.subtitle}</h2>
-                    <span className="post-meta">
-                      <i className="fas fa-calendar"></i>&nbsp;Опубликовано February 13,
-                      2015&nbsp;|&nbsp;
-                      <i className="fas fa-clock"></i>&nbsp;2&nbsp;минут &nbsp;|&nbsp;
-                      <i className="fas fa-book"></i>&nbsp;275&nbsp;слова &nbsp;|&nbsp;
-                      <i className="fas fa-user"></i>&nbsp;Susam
-                    </span>
+                    <PostMeta
+                      postDate={post.postDate}
+                      author={post.author}
+                      contentLength={post.content.length}
+                    />
                     <div className="post-control">
                       <span className="post-control-link post-edit">
                         <i className="fas fa-edit"></i>&nbsp;
@@ -117,35 +124,40 @@ class SinglePostPage extends React.Component<ISinglePostPageProps, ISinglePostPa
           <div className="row">
             <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
               <article role="main" className="blog-post">
-                <p>This is my first post, how exciting!</p>
+                <p>{post.content}</p>
               </article>
 
-              <ul className="pager blog-pager">
-                {prevPost && (
-                  <li className="previous">
+              <Pager
+                className="blog-pager"
+                prevBtnLink={
+                  prevPost && (
                     <Link
                       to={`/post/${prevPost.id}`}
                       data-toggle="tooltip"
                       data-placement="top"
                       title={prevPost.title}
                     >
-                      ← Предыдущий
+                      &larr;Предыдущий
                     </Link>
-                  </li>
-                )}
-
-                {nextPost && (
-                  <li className="next">
+                  )
+                }
+                nextBtnLink={
+                  nextPost && (
                     <Link
                       to={`/post/${nextPost.id}`}
                       data-toggle="tooltip"
                       data-placement="top"
                       title={nextPost.title}
                     >
-                      Следующий →
+                      Следующий&rarr;
                     </Link>
-                  </li>
-                )}
+                  )
+                }
+              />
+
+              <ul className="pager blog-pager">
+                {prevPost && <li className="previous"></li>}
+                {nextPost && <li className="next"></li>}
               </ul>
             </div>
           </div>

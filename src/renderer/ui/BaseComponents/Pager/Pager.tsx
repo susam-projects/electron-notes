@@ -1,23 +1,18 @@
 import * as React from "react";
 
 interface IPagerProps {
-  nextBtnText: string;
-  prevBtnText: string;
-  nextBtnLink: string;
-  prevBtnLink: string;
+  className?: string;
+  nextBtnLink?: React.ReactElement;
+  prevBtnLink?: React.ReactElement;
 }
 
-class Pager  extends React.Component<IPagerProps> {
+class Pager extends React.Component<IPagerProps> {
   render() {
-    const { nextBtnText, prevBtnText, nextBtnLink, prevBtnLink } = this.props;
+    const { className, nextBtnLink, prevBtnLink } = this.props;
     return (
-      <ul className="pager main-pager">
-        <li className="previous">
-          <a href={prevBtnLink}>&larr;{prevBtnText}</a>
-        </li>
-        <li className="next">
-          <a href={nextBtnLink}>{nextBtnText}&rarr;</a>
-        </li>
+      <ul className={`pager ${className}`}>
+        {prevBtnLink && <li className="previous">{prevBtnLink}</li>}
+        {nextBtnLink && <li className="next">{nextBtnLink}</li>}
       </ul>
     );
   }

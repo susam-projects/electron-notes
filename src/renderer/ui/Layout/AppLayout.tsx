@@ -1,3 +1,4 @@
+import { shell } from "electron";
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { boundMethod } from "autobind-decorator";
@@ -32,13 +33,18 @@ export class AppLayout extends React.Component<IAppLayoutProps> {
               <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul className="list-inline text-center footer-links"></ul>
                 <p className="credits copyright text-muted">
-                  Susam &nbsp;•&nbsp;© 2019 &nbsp;•&nbsp;
-                  <Link to="/">Тайный свиток</Link>
+                  Susam &nbsp;•&nbsp;© 2020 &nbsp;•&nbsp;
+                  <Link to="#">Тайный свиток</Link>
                 </p>
 
                 <p className="credits theme-by text-muted">
                   На базе темы{" "}
-                  <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+                  <a
+                    href="https://github.com/halogenica/beautifulhugo"
+                    onClick={this.onBeautifulHugoLinkClick}
+                  >
+                    Beautiful Hugo
+                  </a>
                 </p>
               </div>
             </div>
@@ -54,6 +60,12 @@ export class AppLayout extends React.Component<IAppLayoutProps> {
 
   componentWillUnmount(): void {
     window.removeEventListener("scroll", this.onWindowScroll);
+  }
+
+  @boundMethod
+  onBeautifulHugoLinkClick(event: React.MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault();
+    shell.openExternal(event.currentTarget.href);
   }
 
   @boundMethod

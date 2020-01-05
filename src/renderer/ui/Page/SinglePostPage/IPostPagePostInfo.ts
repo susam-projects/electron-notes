@@ -4,4 +4,5 @@ export interface IPostPagePostInfo {
     subtitle: string;
     author: string;
     content: string;
+    postDate: number;
 }

@@ -61,5 +61,6 @@ function storedPostToPostPagePostInfo(storedPost: IStoredPost): IPostPagePostInf
         title: storedPost.title,
         subtitle: "",
         content: storedPost.content,
+        postDate: storedPost.postDate,
     };
 }
