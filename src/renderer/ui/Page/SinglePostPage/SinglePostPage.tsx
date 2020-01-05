@@ -65,11 +65,10 @@ class SinglePostPage extends React.Component<ISinglePostPageProps, ISinglePostPa
   onDeletePostClick(event: React.MouseEvent<HTMLAnchorElement>) {
     const postRepository = this.context.core.postRepository;
 
-    if (confirm("Вы уверены, что хотите удалить пост?")) {
+    if (confirm("Точно удалить?")) {
       postRepository.deletePost(this.state.post.id);
+      this.props.history.push("/");
     }
-
-    this.props.history.push("/");
 
     event.preventDefault();
     return false;
@@ -85,20 +84,35 @@ class SinglePostPage extends React.Component<ISinglePostPageProps, ISinglePostPa
               <div className="row">
                 <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                   <div className="post-heading">
-                    <h1>To be</h1>
-                    <h2 className="post-subheading">... or not to be?</h2>
+                    <h1>{post.title}</h1>
+                    <h2 className="post-subheading">{post.subtitle}</h2>
                     <span className="post-meta">
-                      <i className="fas fa-calendar"></i>&nbsp;Опубликовано February 13, 2015
-                      &nbsp;|&nbsp;<i className="fas fa-clock"></i>&nbsp;2&nbsp;минут &nbsp;|&nbsp;
+                      <i className="fas fa-calendar"></i>&nbsp;Опубликовано February 13,
+                      2015&nbsp;|&nbsp;
+                      <i className="fas fa-clock"></i>&nbsp;2&nbsp;минут &nbsp;|&nbsp;
                       <i className="fas fa-book"></i>&nbsp;275&nbsp;слова &nbsp;|&nbsp;
                       <i className="fas fa-user"></i>&nbsp;Susam
                     </span>
+                    <div className="post-control">
+                      <span className="post-control-link post-edit">
+                        <i className="fas fa-edit"></i>&nbsp;
+                        <Link to={`/edit-post/${post.id}`}>Редактировать</Link>
+                      </span>
+                      &nbsp;|&nbsp;
+                      <span className="post-control-link post-delete">
+                        <i className="fas fa-trash"></i>&nbsp;
+                        <Link to={""} onClick={this.onDeletePostClick}>
+                          Удалить
+                        </Link>
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </header>
+
         <div className="container" role="main">
           <div className="row">
             <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -107,53 +121,32 @@ class SinglePostPage extends React.Component<ISinglePostPageProps, ISinglePostPa
               </article>
 
               <ul className="pager blog-pager">
-                <li className="previous">
-                  <a
-                    href="http://localhost:1313/post/2015-01-06-third-post/"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="First post!"
-                  >
-                    ← Предыдущий
-                  </a>
-                </li>
+                {prevPost && (
+                  <li className="previous">
+                    <Link
+                      to={`/post/${prevPost.id}`}
+                      data-toggle="tooltip"
+                      data-placement="top"
+                      title={prevPost.title}
+                    >
+                      ← Предыдущий
+                    </Link>
+                  </li>
+                )}
 
-                <li className="next">
-                  <a
-                    href="http://localhost:1313/post/2015-01-04-first-post/"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="First post!"
-                  >
-                    Следующий →
-                  </a>
-                </li>
+                {nextPost && (
+                  <li className="next">
+                    <Link
+                      to={`/post/${nextPost.id}`}
+                      data-toggle="tooltip"
+                      data-placement="top"
+                      title={nextPost.title}
+                    >
+                      Следующий →
+                    </Link>
+                  </li>
+                )}
               </ul>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div>
-            <Link to={`/edit-post/${post.id}`}>Редактировать</Link>
-          </div>
-          <div>
-            <a href={""} onClick={this.onDeletePostClick}>
-              Удалить пост
-            </a>
-          </div>
-          <div>{post.title}</div>
-          <div>{post.author}</div>
-          <div>{post.content}</div>
-          <div>
-            <Link to={"/"}>На список постов</Link>
-          </div>
-          <div className={styles.nextPrevContainer}>
-            <div className={styles.prev}>
-              {prevPost && <Link to={`/post/${prevPost.id}`}>{prevPost.title}</Link>}
-            </div>
-            <div className={styles.next}>
-              {nextPost && <Link to={`/post/${nextPost.id}`}>{nextPost.title}</Link>}
             </div>
           </div>
         </div>
