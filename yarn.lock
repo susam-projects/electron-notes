@@ -9,6 +9,64 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@bbob/core@^2.5.4":
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/@bbob/core/-/core-2.5.4.tgz#c78aa9b9e81bb0cceea36fb8bd7814afa805466d"
+  integrity sha512-8M/xQkU84XvXw82vBhLFukRWTyTSFoGBmCe3nuE62z4wRaYmmg+B9GYGZv6rM6KNva5UyOi5zVQhgpw7fYH5rg==
+  dependencies:
+    "@bbob/parser" "^2.5.4"
+
+"@bbob/html@^2.5.4":
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/@bbob/html/-/html-2.5.4.tgz#9f6f29863745763063b733b00b429ced15c52d1d"
+  integrity sha512-18R/4PJi+BpgfBEZbNYPajBZC+dmNBurLvbrXFkhyKlTvXf1PFhrE9BnLmh+y5yee+a/dKpRl4kzqn6DLBdGUQ==
+  dependencies:
+    "@bbob/core" "^2.5.4"
+    "@bbob/plugin-helper" "^2.5.4"
+
+"@bbob/parser@^2.5.4":
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/@bbob/parser/-/parser-2.5.4.tgz#565b8cbade0854ce48858a65ad7d27838eb5d63d"
+  integrity sha512-g3t1Lmw6xqJx5jSia7302WjxtMfNlqFxwLtLiJbT2LnPUVYHESaX90wibH/TK4L0T9DFtgYFwKsmY7r/QjF8rQ==
+  dependencies:
+    "@bbob/plugin-helper" "^2.5.4"
+
+"@bbob/plugin-helper@^2.5.4":
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/@bbob/plugin-helper/-/plugin-helper-2.5.4.tgz#a476ca183ab937144d97c53a5071448ec99d4e2c"
+  integrity sha512-P6y7hdhYrJ2FlRV2nuE9u7c7tZcx3TkbEKxrckfrHihDSsKPvjTWl9cxUf5KR5B0cCo1lxDHRj+lu66aJXEgFw==
+
+"@bbob/preset-html5@^2.5.4":
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/@bbob/preset-html5/-/preset-html5-2.5.4.tgz#64f1826e01ecdf4f82e648932205654d1cb7d90e"
+  integrity sha512-KErcvGjWzkjUuOJFzoMzTC6hHKMUlI5ma63FtMBKcMeExAJSDyzNFbpTAthpD4d17Vh9mtD3VEe1ANVLFNPV/Q==
+  dependencies:
+    "@bbob/plugin-helper" "^2.5.4"
+    "@bbob/preset" "^2.5.4"
+
+"@bbob/preset-react@^2.5.4":
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/@bbob/preset-react/-/preset-react-2.5.4.tgz#cfc53905603b5c6d3aa407cddfa57fad31a9e474"
+  integrity sha512-moT6G76lmG9/V7/hQTNBFgtKgd5I1Vu7eOEfhcdukl1Njj4jaaea4dAq2CJv5ON/fmyPkfey8Zi++nREAwBzYA==
+  dependencies:
+    "@bbob/preset-html5" "^2.5.4"
+
+"@bbob/preset@^2.5.4":
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/@bbob/preset/-/preset-2.5.4.tgz#5e5233bb00c4a9a6599547299be4c9259103f343"
+  integrity sha512-/noZPBmjiDQ8+hJ8631I8g1XIEc6hHz48LYA6/EMxpgYCrro1V8oimBbhqVTpGtJk2C3y8Vqt6LTTIwH8ueHug==
+  dependencies:
+    "@bbob/plugin-helper" "^2.5.4"
+
+"@bbob/react@^2.5.4":
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/@bbob/react/-/react-2.5.4.tgz#87d0611c5887f49cb8d18c6db2a677e72c76361e"
+  integrity sha512-Ek6zx+0wPb7y0NhOOZBr/LHhGNLf4NJMwsDp1+O7vkWqopEERTh1pxJLN4wTIvIQHipBdH2QOxGpCuSi/xcHKA==
+  dependencies:
+    "@bbob/core" "^2.5.4"
+    "@bbob/html" "^2.5.4"
+    "@bbob/plugin-helper" "^2.5.4"
+
 "@electron/get@^1.0.1":
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/@electron/get/-/get-1.7.2.tgz#286436a9fb56ff1a1fcdf0e80131fd65f4d1e0fd"

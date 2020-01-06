@@ -14,6 +14,9 @@
     "pretty": "prettier --write src/**/*.{ts,tsx,css,scss}"
   },
   "devDependencies": {
+    "@bbob/core": "^2.5.4",
+    "@bbob/preset-react": "^2.5.4",
+    "@bbob/react": "^2.5.4",
     "@fortawesome/fontawesome-free": "^5.12.0",
     "@openfonts/lora_cyrillic": "^1.44.0",
     "@openfonts/lora_latin": "^1.44.0",

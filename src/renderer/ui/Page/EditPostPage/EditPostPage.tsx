@@ -5,7 +5,7 @@ import { IPostPagePostInfo } from "../SinglePostPage/IPostPagePostInfo";
 import { debounce, clone, isUndefined } from "lodash";
 import PostMeta from "../../BaseComponents/PostMeta/PostMeta";
 import classNames from "classnames";
-import BBCodeEditor from "./BBCodeEditor/BBCodeEditor";
+import BBCodeEditor from "../../BaseComponents/BBCodeEditor/BBCodeEditor";
 
 const styles = require("./EditPostPage.scss");
 
