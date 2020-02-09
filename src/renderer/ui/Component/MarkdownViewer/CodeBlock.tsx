@@ -20,11 +20,12 @@ class CodeBlock extends React.PureComponent<ICodeBlockProps> {
     console.log("rendering code block", language, value);
 
     language = "js";
-    value = "```js\n" +
+    value =
+      "```js\n" +
       "var React = require('react');\n" +
       "var Markdown = require('react-markdown');\n" +
       "React.render(\n" +
-      "  <Markdown source=\"# Your markdown here\" />,\n" +
+      '  <Markdown source="# Your markdown here" />,\n' +
       "  document.getElementById('content')\n" +
       ");\n" +
       "```";
