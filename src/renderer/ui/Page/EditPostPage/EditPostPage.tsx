@@ -1,11 +1,11 @@
 import * as React from "react";
 import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import { AppContext, IAppContext } from "../../AppContext";
-import { IPostPagePostInfo } from "../SinglePostPage/IPostPagePostInfo";
 import { debounce, clone, isUndefined } from "lodash";
 import PostMeta from "../../Component/PostMeta/PostMeta";
 import classNames from "classnames";
 import MarkdownEditor from "../../Component/MarkdownEditor/MarkdownEditor";
+import { IEditPostPagePostInfo } from "./IEditPostPagePostInfo";
 
 const styles = require("./EditPostPage.scss");
 
@@ -24,8 +24,7 @@ interface IEditPostPageState {
   postDate: number;
 }
 
-// TODO: use separate type for this page
-const NULL_POST_INFO: IPostPagePostInfo = {
+const NULL_POST_INFO: IEditPostPagePostInfo = {
   id: 0,
   title: "",
   subtitle: "",

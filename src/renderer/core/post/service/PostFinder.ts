@@ -3,6 +3,7 @@ import { IPostListPostInfo } from "../../../ui/Page/PostListPage/IPostListPostIn
 import { IPostPagePostInfo } from "../../../ui/Page/SinglePostPage/IPostPagePostInfo";
 import { IPostStorage } from "./IPostStorage";
 import { IStoredPost } from "./IStoredPost";
+import { IEditPostPagePostInfo } from "../../../ui/Page/EditPostPage/IEditPostPagePostInfo";
 
 export class PostFinder implements IPostFinder {
     constructor(private readonly storage: IPostStorage) {}
@@ -17,6 +18,12 @@ export class PostFinder implements IPostFinder {
         console.log(`getting post ${id}`);
         const storedPost = await this.storage.get(id);
         return storedPost && storedPostToPostPagePostInfo(storedPost);
+    }
+
+    async getPostForEditor(id: number): Promise<IEditPostPagePostInfo | undefined> {
+        console.log(`getting post ${id}`);
+        const storedPost = await this.storage.get(id);
+        return storedPost && storedPostToEditPostInfo(storedPost);
     }
 
     async getNextPost(postId: number): Promise<IPostPagePostInfo | undefined> {
@@ -55,6 +62,17 @@ function storedPostToPostListPostInfo(storedPost: IStoredPost): IPostListPostInf
 }
 
 function storedPostToPostPagePostInfo(storedPost: IStoredPost): IPostPagePostInfo {
+    return {
+        id: storedPost.id,
+        author: storedPost.author,
+        title: storedPost.title,
+        subtitle: storedPost.subtitle,
+        content: storedPost.content,
+        postDate: storedPost.postDate,
+    };
+}
+
+function storedPostToEditPostInfo(storedPost: IStoredPost): IEditPostPagePostInfo {
     return {
         id: storedPost.id,
         author: storedPost.author,
