@@ -4,7 +4,7 @@ import { AppContext, IAppContext } from "../../AppContext";
 import { IPostListPostInfo } from "./IPostListPostInfo";
 import { boundMethod } from "autobind-decorator";
 import { withRouter, RouteComponentProps, Link } from "react-router-dom";
-import Pager from "../../BaseComponents/Pager/Pager";
+import Pager from "../../Component/Pager/Pager";
 
 const styles = require("./PostListPage.scss");
 

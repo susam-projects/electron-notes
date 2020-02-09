@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Link, RouteComponentProps, withRouter } from "react-router-dom";
 import { AppContext, IAppContext } from "../../AppContext";
-import BBCodeViewer from "../../BaseComponents/BBCodeViewer/BBCodeViewer";
 import { IPostPagePostInfo } from "./IPostPagePostInfo";
 import { boundMethod } from "autobind-decorator";
-import Pager from "../../BaseComponents/Pager/Pager";
-import PostMeta from "../../BaseComponents/PostMeta/PostMeta";
+import Pager from "../../Component/Pager/Pager";
+import PostMeta from "../../Component/PostMeta/PostMeta";
+import MarkdownViewer from "../../Component/MarkdownViewer/MarkdownViewer";
 
 const styles = require("./SinglePostPage.scss");
 
@@ -125,8 +125,7 @@ class SinglePostPage extends React.Component<ISinglePostPageProps, ISinglePostPa
           <div className="row">
             <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
               <article role="main" className="blog-post">
-                {/*<p>{post.content}</p>*/}
-                <BBCodeViewer text={post.content} />
+                <MarkdownViewer source={post.content} />
               </article>
 
               <Pager

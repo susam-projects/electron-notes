@@ -3,9 +3,9 @@ import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import { AppContext, IAppContext } from "../../AppContext";
 import { IPostPagePostInfo } from "../SinglePostPage/IPostPagePostInfo";
 import { debounce, clone, isUndefined } from "lodash";
-import PostMeta from "../../BaseComponents/PostMeta/PostMeta";
+import PostMeta from "../../Component/PostMeta/PostMeta";
 import classNames from "classnames";
-import BBCodeEditor from "../../BaseComponents/BBCodeEditor/BBCodeEditor";
+import MarkdownEditor from "../../Component/MarkdownEditor/MarkdownEditor";
 
 const styles = require("./EditPostPage.scss");
 
@@ -101,12 +101,13 @@ class EditPostPage extends React.Component<IEditPostPageProps, IEditPostPageStat
                 />
               </div>
               <div>
-                <BBCodeEditor
+                <MarkdownEditor onChange={this.onContentChange} value={content} />
+                {/*<BBCodeEditor
                   className={classNames("form-control", styles.input, styles.content)}
                   defaultValue={content}
                   onChange={this.onContentChange}
                   minRows={10}
-                />
+                />*/}
               </div>
 
               <ul className="pager blog-pager end-edit">

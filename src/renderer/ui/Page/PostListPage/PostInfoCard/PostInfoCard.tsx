@@ -2,7 +2,7 @@ import * as React from "react";
 import { truncate } from "lodash";
 import { Link } from "react-router-dom";
 import { IPostListPostInfo } from "../IPostListPostInfo";
-import PostMeta from "../../../BaseComponents/PostMeta/PostMeta";
+import PostMeta from "../../../Component/PostMeta/PostMeta";
 
 const styles = require("./PostInfoCard.scss");
 
