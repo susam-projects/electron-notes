@@ -82,6 +82,7 @@ class PostListPage extends React.Component<IPostListPageProps, IPostListPageStat
 
     const newPostId = await postRepository.addPost({
       title: "Sample Title",
+      subtitle: "",
       author: "Post Author",
       content: "Type your content here...",
     });

@@ -48,7 +48,7 @@ function storedPostToPostListPostInfo(storedPost: IStoredPost): IPostListPostInf
         id: storedPost.id,
         author: storedPost.author,
         title: storedPost.title,
-        subtitle: "",
+        subtitle: storedPost.subtitle,
         content: storedPost.content,
         postDate: storedPost.postDate,
     };
@@ -59,7 +59,7 @@ function storedPostToPostPagePostInfo(storedPost: IStoredPost): IPostPagePostInf
         id: storedPost.id,
         author: storedPost.author,
         title: storedPost.title,
-        subtitle: "",
+        subtitle: storedPost.subtitle,
         content: storedPost.content,
         postDate: storedPost.postDate,
     };

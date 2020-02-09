@@ -7,8 +7,6 @@ import Pager from "../../Component/Pager/Pager";
 import PostMeta from "../../Component/PostMeta/PostMeta";
 import MarkdownViewer from "../../Component/MarkdownViewer/MarkdownViewer";
 
-const styles = require("./SinglePostPage.scss");
-
 interface ISinglePostPageUrlParams {
   id: string;
 }

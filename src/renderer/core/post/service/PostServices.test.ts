@@ -15,6 +15,7 @@ describe("post storage services", () => {
     it("can store a post and then retrieve it", async () => {
         const postData = {
             title: "post-title",
+            subtitle: "post-subtitle",
             author: "post-author",
             content: "post-content",
         };
@@ -29,8 +30,18 @@ describe("post storage services", () => {
     });
 
     it("can get all stored posts", async () => {
-        const post1 = { title: "post-title-1", author: "post-author", content: "post-content-1" };
-        const post2 = { title: "post-title-2", author: "post-author", content: "post-content-2" };
+        const post1 = {
+            title: "post-title-1",
+            subtitle: "post-subtitle",
+            author: "post-author",
+            content: "post-content-1",
+        };
+        const post2 = {
+            title: "post-title-2",
+            subtitle: "post-subtitle",
+            author: "post-author",
+            content: "post-content-2",
+        };
         const post1Id = await postRepository.addPost(post1);
         const post2Id = await postRepository.addPost(post2);
         const allStoredPosts = await postFinder.getAllPosts();
@@ -47,8 +58,18 @@ describe("post storage services", () => {
     });
 
     it("can clear posts storage", async () => {
-        const post1 = { title: "post-title-1", author: "post-author", content: "post-content-1" };
-        const post2 = { title: "post-title-2", author: "post-author", content: "post-content-2" };
+        const post1 = {
+            title: "post-title-1",
+            subtitle: "post-subtitle",
+            author: "post-author",
+            content: "post-content-1",
+        };
+        const post2 = {
+            title: "post-title-2",
+            subtitle: "post-subtitle",
+            author: "post-author",
+            content: "post-content-2",
+        };
         await postRepository.addPost(post1);
         await postRepository.addPost(post2);
         await postRepository.clear();
@@ -59,6 +80,7 @@ describe("post storage services", () => {
     it("can update post title", async () => {
         const postId = await postRepository.addPost({
             title: "post-title",
+            subtitle: "post-subtitle",
             author: "post-author",
             content: "post-content",
         });
@@ -66,6 +88,24 @@ describe("post storage services", () => {
         const storedPost = await postFinder.getPostById(postId);
         expect(storedPost).to.deep.include({
             title: "new-post-title",
+            subtitle: "post-subtitle",
+            author: "post-author",
+            content: "post-content",
+        });
+    });
+
+    it("can update post subtitle", async () => {
+        const postId = await postRepository.addPost({
+            title: "post-title",
+            subtitle: "post-subtitle",
+            author: "post-author",
+            content: "post-content",
+        });
+        await postRepository.updatePostSubtitle(postId, "new-post-subtitle");
+        const storedPost = await postFinder.getPostById(postId);
+        expect(storedPost).to.deep.include({
+            title: "post-title",
+            subtitle: "new-post-subtitle",
             author: "post-author",
             content: "post-content",
         });
@@ -74,6 +114,7 @@ describe("post storage services", () => {
     it("can update post content", async () => {
         const postId = await postRepository.addPost({
             title: "post-title",
+            subtitle: "post-subtitle",
             author: "post-author",
             content: "post-content",
         });
@@ -89,6 +130,7 @@ describe("post storage services", () => {
     it("can delete a post", async () => {
         const postId = await postRepository.addPost({
             title: "post-title",
+            subtitle: "post-subtitle",
             author: "post-author",
             content: "post-content",
         });
@@ -98,9 +140,24 @@ describe("post storage services", () => {
     });
 
     it("can get next post", async () => {
-        const post1 = { title: "post-title-1", author: "post-author", content: "post-content-1" };
-        const post2 = { title: "post-title-2", author: "post-author", content: "post-content-2" };
-        const post3 = { title: "post-title-3", author: "post-author", content: "post-content-3" };
+        const post1 = {
+            title: "post-title-1",
+            subtitle: "post-subtitle",
+            author: "post-author",
+            content: "post-content-1",
+        };
+        const post2 = {
+            title: "post-title-2",
+            subtitle: "post-subtitle",
+            author: "post-author",
+            content: "post-content-2",
+        };
+        const post3 = {
+            title: "post-title-3",
+            subtitle: "post-subtitle",
+            author: "post-author",
+            content: "post-content-3",
+        };
         const post1Id = await postRepository.addPost(post1);
         const post2Id = await postRepository.addPost(post2);
         const post3Id = await postRepository.addPost(post3);
@@ -113,9 +170,24 @@ describe("post storage services", () => {
     });
 
     it("can get prev post", async () => {
-        const post1 = { title: "post-title-1", author: "post-author", content: "post-content-1" };
-        const post2 = { title: "post-title-2", author: "post-author", content: "post-content-2" };
-        const post3 = { title: "post-title-3", author: "post-author", content: "post-content-3" };
+        const post1 = {
+            title: "post-title-1",
+            subtitle: "post-subtitle",
+            author: "post-author",
+            content: "post-content-1",
+        };
+        const post2 = {
+            title: "post-title-2",
+            subtitle: "post-subtitle",
+            author: "post-author",
+            content: "post-content-2",
+        };
+        const post3 = {
+            title: "post-title-3",
+            subtitle: "post-subtitle",
+            author: "post-author",
+            content: "post-content-3",
+        };
         const post1Id = await postRepository.addPost(post1);
         const post2Id = await postRepository.addPost(post2);
         const post3Id = await postRepository.addPost(post3);

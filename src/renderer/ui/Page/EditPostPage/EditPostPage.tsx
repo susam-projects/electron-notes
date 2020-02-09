@@ -129,8 +129,7 @@ class EditPostPage extends React.Component<IEditPostPageProps, IEditPostPageStat
     const postId = this.state.id;
     const subtitle = this.subtitleInputRef.current?.value;
     if (isUndefined(subtitle)) return;
-    // TODO: create and use the method
-    // await postRepository.updatePostSubtitle(postId, subtitle);
+    await postRepository.updatePostSubtitle(postId, subtitle);
   });
 
   onContentChange = debounceEditPostInput(async (content) => {
