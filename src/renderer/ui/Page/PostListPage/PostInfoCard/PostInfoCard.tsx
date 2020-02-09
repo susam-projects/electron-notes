@@ -5,8 +5,6 @@ import { IPostListPostInfo } from "../IPostListPostInfo";
 import PostMeta from "../../../Component/PostMeta/PostMeta";
 import MarkdownViewer from "../../../Component/MarkdownViewer/MarkdownViewer";
 
-const styles = require("./PostInfoCard.scss");
-
 interface IPostInfoCardProps {
   post: IPostListPostInfo;
 }

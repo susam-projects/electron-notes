@@ -6,8 +6,6 @@ import { boundMethod } from "autobind-decorator";
 import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import Pager from "../../Component/Pager/Pager";
 
-const styles = require("./PostListPage.scss");
-
 interface IPostListPageProps extends RouteComponentProps {}
 
 interface IPostListPageState {
