@@ -29,10 +29,10 @@ export class PostFinder implements IPostFinder {
     async getNextPost(postId: number): Promise<IPostPagePostInfo | undefined> {
         console.log(`getting post next of ${postId}`);
 
-        const post = await this.storage.get(postId);
-        if (!post) return;
+        const storedPost = await this.storage.get(postId);
+        if (!storedPost) return;
 
-        const postsFromDate = await this.storage.getFromDateAndMoreRecent(post.postDate);
+        const postsFromDate = await this.storage.getFromDateAndMoreRecent(storedPost.postDate);
         const moreRecentPosts = postsFromDate.filter((post) => post.id !== postId);
         return moreRecentPosts[0] && storedPostToPostPagePostInfo(moreRecentPosts[0]);
     }
@@ -40,10 +40,10 @@ export class PostFinder implements IPostFinder {
     async getPrevPost(postId: number): Promise<IPostPagePostInfo | undefined> {
         console.log(`getting post prev to ${postId}`);
 
-        const post = await this.storage.get(postId);
-        if (!post) return;
+        const storedPost = await this.storage.get(postId);
+        if (!storedPost) return;
 
-        const postsFromDate = await this.storage.getFromDateAndOlder(post.postDate);
+        const postsFromDate = await this.storage.getFromDateAndOlder(storedPost.postDate);
         const olderPosts = postsFromDate.filter((post) => post.id !== postId);
         const prevPost = olderPosts[olderPosts.length - 1];
         return prevPost && storedPostToPostPagePostInfo(prevPost);
