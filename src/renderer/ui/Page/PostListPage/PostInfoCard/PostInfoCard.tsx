@@ -3,6 +3,7 @@ import { truncate } from "lodash";
 import { Link } from "react-router-dom";
 import { IPostListPostInfo } from "../IPostListPostInfo";
 import PostMeta from "../../../Component/PostMeta/PostMeta";
+import MarkdownViewer from "../../../Component/MarkdownViewer/MarkdownViewer";
 
 const styles = require("./PostInfoCard.scss");
 
@@ -33,7 +34,7 @@ export class PostInfoCard extends React.Component<IPostInfoCardProps> {
           />
         </p>
         <div className="post-entry">
-          {post.content}
+          <MarkdownViewer source={contentPreview} />
           <Link to={`/post/${post.id}`} className="post-read-more">
             [Далее]
           </Link>

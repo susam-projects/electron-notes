@@ -9,7 +9,6 @@ import PostListPage from "./Page/PostListPage/PostListPage";
 import SinglePostPage from "./Page/SinglePostPage/SinglePostPage";
 import EditPostPage from "./Page/EditPostPage/EditPostPage";
 import * as moment from "moment";
-import MarkdownEditor from "./Component/MarkdownEditor/MarkdownEditor";
 
 moment.locale("ru");
 
@@ -27,8 +26,7 @@ export const AppUi: React.FC<IAppUiProps> = ({ core }) => {
               <Route path="/post/:id" component={SinglePostPage} />
               <Route path="/edit-post/:id" component={EditPostPage} />
               <Route path="/post-list/page/:id" component={PostListPage} />
-              {/*<Redirect to="/post-list/page/1" />*/}
-              <Redirect to="/edit-post/1" />
+              <Redirect to="/post-list/page/1" />
             </Switch>
           }
         />

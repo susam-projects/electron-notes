@@ -1,6 +1,6 @@
 import * as React from "react";
-// const hljs = window.hljs
 import hljs from "highlight.js";
+import "./CodeBlock.global.scss";
 
 interface ICodeBlockProps {
   value: string;
@@ -16,23 +16,9 @@ class CodeBlock extends React.PureComponent<ICodeBlockProps> {
 
   render() {
     let { language, value } = this.props;
-
-    console.log("rendering code block", language, value);
-
-    language = "js";
-    value =
-      "```js\n" +
-      "var React = require('react');\n" +
-      "var Markdown = require('react-markdown');\n" +
-      "React.render(\n" +
-      '  <Markdown source="# Your markdown here" />,\n' +
-      "  document.getElementById('content')\n" +
-      ");\n" +
-      "```";
-
     return (
       <pre>
-        <code ref={this.codeEl} className={`language-${language || ""}`}>
+        <code ref={this.codeEl} className={`language-${language}`}>
           {value}
         </code>
       </pre>

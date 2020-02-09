@@ -102,12 +102,6 @@ class EditPostPage extends React.Component<IEditPostPageProps, IEditPostPageStat
               </div>
               <div>
                 <MarkdownEditor onChange={this.onContentChange} value={content} />
-                {/*<BBCodeEditor
-                  className={classNames("form-control", styles.input, styles.content)}
-                  defaultValue={content}
-                  onChange={this.onContentChange}
-                  minRows={10}
-                />*/}
               </div>
 
               <ul className="pager blog-pager end-edit">

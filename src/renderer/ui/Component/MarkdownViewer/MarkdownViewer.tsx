@@ -10,7 +10,7 @@ interface IMarkdownViewerProps {
 
 class MarkdownViewer extends React.Component<IMarkdownViewerProps> {
   render() {
-    const { source } = this.props;
+    let { source } = this.props;
     return (
       <ReactMarkdown
         source={source}
