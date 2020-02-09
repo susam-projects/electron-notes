@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackBar = require('webpackbar');
-const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 function rootPath(dir = '') {
@@ -88,11 +87,6 @@ module.exports = [
             new HtmlWebpackPlugin({
                 template: rendererPath('index.html')
             }),
-            new CopyPlugin([
-                { from: rootPath('node_modules/sceditor/minified'), to: distRendererPath('sceditor/minified') },
-                { from: rootPath('node_modules/sceditor/emoticons'), to: distRendererPath('sceditor/emoticons') },
-                { from: rootPath('node_modules/sceditor/languages'), to: distRendererPath('sceditor/languages') },
-            ])
         ],
         resolve: {
             extensions: ['.js', '.ts', '.tsx'],
