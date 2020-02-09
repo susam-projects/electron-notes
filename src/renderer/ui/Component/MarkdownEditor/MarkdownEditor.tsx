@@ -3,6 +3,7 @@ import * as Codemirror from "codemirror";
 import { UnControlled as CodeMirror } from "react-codemirror2";
 import { boundMethod } from "autobind-decorator";
 import "codemirror/mode/markdown/markdown";
+import "codemirror/addon/display/fullscreen";
 import "./CodeMirror.global.scss";
 
 interface ITextEditorProps {
@@ -19,6 +20,17 @@ class MarkdownEditor extends React.Component<ITextEditorProps> {
           options={{
             mode: "markdown",
             theme: "monokai",
+            lineWrapping: true,
+            extraKeys: {
+              F11: function(editor) {
+                // @ts-ignore
+                editor.setOption("fullScreen", !editor.getOption("fullScreen"));
+              },
+              Esc: function(editor) {
+                // @ts-ignore
+                if (editor.getOption("fullScreen")) editor.setOption("fullScreen", false);
+              },
+            },
           }}
           value={value}
           onChange={this.onChange}

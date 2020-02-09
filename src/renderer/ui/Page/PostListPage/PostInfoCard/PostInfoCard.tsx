@@ -11,7 +11,7 @@ interface IPostInfoCardProps {
   post: IPostListPostInfo;
 }
 
-const CONTENT_PREVIEW_MAX_LENGTH = 100;
+const CONTENT_PREVIEW_MAX_LENGTH = 250;
 
 export class PostInfoCard extends React.Component<IPostInfoCardProps> {
   render() {
