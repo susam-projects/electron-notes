@@ -97,7 +97,7 @@ class SinglePostPage extends React.Component<ISinglePostPageProps, ISinglePostPa
                     <PostMeta
                       postDate={post.postDate}
                       author={post.author}
-                      contentLength={post.content.length}
+                      content={post.content}
                     />
                     <div className="post-control">
                       <span className="post-control-link post-edit">

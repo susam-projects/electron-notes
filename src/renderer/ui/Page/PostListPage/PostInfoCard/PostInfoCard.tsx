@@ -28,7 +28,7 @@ export class PostInfoCard extends React.Component<IPostInfoCardProps> {
           <PostMeta
             postDate={post.postDate}
             author={post.author}
-            contentLength={post.content.length}
+            content={post.content}
           />
         </p>
         <div className="post-entry">

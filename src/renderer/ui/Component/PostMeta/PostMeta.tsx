@@ -1,21 +1,22 @@
 import * as React from "react";
 import * as moment from "moment";
+import { calculateReadTime, countWords } from "../../../utils/TextUtils";
 
 interface IPostMetaProps {
   postDate?: number;
   author: string;
-  contentLength: number;
+  content: string;
 }
 
 class PostMeta extends React.Component<IPostMetaProps> {
   static defaultProps = {
-    contentLength: 0,
+    content: "",
   };
 
   render() {
-    const { postDate, author, contentLength } = this.props;
+    const { postDate, author, content } = this.props;
 
-    const wordsCount = estimateWordCount(contentLength);
+    const wordsCount = countWords(content);
     const readTime = calculateReadTime(wordsCount);
 
     return (
@@ -33,16 +34,6 @@ class PostMeta extends React.Component<IPostMetaProps> {
       </span>
     );
   }
-}
-
-const AVERAGE_WORD_LENGTH = 5;
-
-function estimateWordCount(contentLength: number) {
-  return Math.ceil(contentLength / AVERAGE_WORD_LENGTH);
-}
-
-function calculateReadTime(wordsCount: number) {
-  return Math.ceil(wordsCount / 220.0);
 }
 
 export default PostMeta;
