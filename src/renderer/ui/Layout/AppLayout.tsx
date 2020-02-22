@@ -21,7 +21,7 @@ export class AppLayout extends React.Component<IAppLayoutProps> {
           <div className="container-fluid" style={{ display: "flex", justifyContent: "center" }}>
             <div className="navbar-header">
               <Link className="navbar-brand" to="/">
-                Тайный свиток
+                Записная книжка
               </Link>
             </div>
           </div>
@@ -34,7 +34,7 @@ export class AppLayout extends React.Component<IAppLayoutProps> {
                 <ul className="list-inline text-center footer-links"></ul>
                 <p className="credits copyright text-muted">
                   Susam &nbsp;•&nbsp;© 2020 &nbsp;•&nbsp;
-                  <Link to="#">Тайный свиток</Link>
+                  <Link to="#">Записная книжка</Link>
                 </p>
 
                 <p className="credits theme-by text-muted">

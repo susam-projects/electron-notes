@@ -36,7 +36,7 @@ class PostListPage extends React.Component<IPostListPageProps, IPostListPageStat
                   <div className="page-heading">
                     <h1>Актуальные записи</h1>
                     <hr className="small" />
-                    <span className="page-subheading">Самовыражение и свобода мысли!</span>
+                    <span className="page-subheading">Notes</span>
                   </div>
                 </div>
               </div>
