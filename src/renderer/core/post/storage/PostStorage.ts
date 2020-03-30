@@ -29,12 +29,24 @@ export class PostStorage implements IPostStorage {
     }
 
     getAll(): Promise<IStoredPost[]> {
-        return this.table.filter(() => true).toArray();
+        return this.table.toArray();
     }
 
     getAllReversed(): Promise<IStoredPost[]> {
+        return this.table.reverse().toArray();
+    }
+
+    getRange(offset: number, limit: number): Promise<IStoredPost[]> {
         return this.table
-            .filter(() => true)
+            .offset(offset)
+            .limit(limit)
+            .toArray();
+    }
+
+    getRangeReversed(offset: number, limit: number): Promise<IStoredPost[]> {
+        return this.table
+            .offset(offset)
+            .limit(limit)
             .reverse()
             .toArray();
     }

@@ -8,6 +8,8 @@ export interface IPostStorage {
     get(postId: TPostId): Promise<IStoredPost>;
     getAll(): Promise<IStoredPost[]>;
     getAllReversed(): Promise<IStoredPost[]>;
+    getRange(offset: number, limit: number): Promise<IStoredPost[]>;
+    getRangeReversed(offset: number, limit: number): Promise<IStoredPost[]>;
     getFromDateAndOlder(postDate: TPostDate): Promise<IStoredPost[]>;
     getFromDateAndMoreRecent(postDate: TPostDate): Promise<IStoredPost[]>;
 }

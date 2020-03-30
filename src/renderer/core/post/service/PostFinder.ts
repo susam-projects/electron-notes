@@ -14,6 +14,12 @@ export class PostFinder implements IPostFinder {
         return storedPosts.map(storedPostToPostListPostInfo);
     }
 
+    async getSeveralPosts(offset: number, limit: number): Promise<IPostListPostInfo[]> {
+        console.log(`getting max ${limit} posts from ${offset}`);
+        const storedPosts = await this.storage.getRangeReversed(offset, limit);
+        return storedPosts.map(storedPostToPostListPostInfo);
+    }
+
     async getPostById(id: number): Promise<IPostPagePostInfo | undefined> {
         console.log(`getting post ${id}`);
         const storedPost = await this.storage.get(id);
