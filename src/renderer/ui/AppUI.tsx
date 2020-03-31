@@ -25,7 +25,7 @@ export const AppUi: React.FC<IAppUiProps> = ({ core }) => {
             <Switch>
               <Route path="/post/:id" component={SinglePostPage} />
               <Route path="/edit-post/:id" component={EditPostPage} />
-              <Route path="/post-list/page/:id" component={PostListPage} />
+              <Route path="/post-list/page/:number" component={PostListPage} />
               <Redirect to="/post-list/page/1" />
             </Switch>
           }

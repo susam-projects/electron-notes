@@ -3,6 +3,8 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { boundMethod } from "autobind-decorator";
 
+const styles = require("./AppLayout.scss");
+
 interface IAppLayoutProps {
   page: React.ReactElement;
 }
@@ -15,7 +17,7 @@ export class AppLayout extends React.Component<IAppLayoutProps> {
     return (
       <div>
         <nav className="navbar navbar-default navbar-fixed-top navbar-custom top-nav-short" ref={this.navRef}>
-          <div className="container-fluid" style={{ display: "flex", justifyContent: "center" }}>
+          <div className={`container-fluid ${styles.headerContainer}`}>
             <div className="navbar-header">
               <Link className="navbar-brand" to="/">
                 Записная книжка

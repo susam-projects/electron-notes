@@ -2,8 +2,8 @@ import * as React from "react";
 
 interface IPagerProps {
   className?: string;
-  nextBtnLink?: React.ReactElement;
-  prevBtnLink?: React.ReactElement;
+  nextBtnLink?: React.ReactElement | boolean;
+  prevBtnLink?: React.ReactElement | boolean;
 }
 
 class Pager extends React.Component<IPagerProps> {

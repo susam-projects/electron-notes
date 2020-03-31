@@ -6,10 +6,17 @@ import { boundMethod } from "autobind-decorator";
 import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import Pager from "../../Component/Pager/Pager";
 
-interface IPostListPageProps extends RouteComponentProps {}
+const PAGE_SIZE = 5;
+
+interface IPostListPageProps extends RouteComponentProps<IPostListPageRouteParams> {}
+
+interface IPostListPageRouteParams {
+  number: string;
+}
 
 interface IPostListPageState {
   posts: IPostListPostInfo[];
+  havePrevPost: boolean;
 }
 
 class PostListPage extends React.Component<IPostListPageProps, IPostListPageState> {
@@ -17,15 +24,53 @@ class PostListPage extends React.Component<IPostListPageProps, IPostListPageStat
   context: IAppContext;
   state: IPostListPageState = {
     posts: [],
+    havePrevPost: false,
   };
 
   async componentDidMount() {
-    const allPosts = await this.context.core.postFinder.getAllPosts();
-    this.setState({ posts: allPosts });
+    this.loadPosts();
+  }
+
+  componentDidUpdate(prevProps: Readonly<IPostListPageProps>) {
+    if (this.props.location !== prevProps.location) {
+      this.onRouteChanged();
+    }
+  }
+
+  onRouteChanged() {
+    this.loadPosts();
+  }
+
+  async loadPosts() {
+    const pageNumber = parseInt(this.props.match.params.number);
+    const posts = await this.getPagePosts(pageNumber);
+
+    const lastPost = posts[posts.length - 1];
+    const prevPost = await this.context.core.postFinder.getPrevPost(lastPost.id);
+
+    this.setState({ posts, havePrevPost: !!prevPost });
+  }
+
+  async getPagePosts(pageNumber: number) {
+    if (isNaN(pageNumber)) {
+      pageNumber = 1;
+    }
+    if (pageNumber < 1) {
+      return [];
+    }
+    const offset = (pageNumber - 1) * PAGE_SIZE;
+    const limit = PAGE_SIZE;
+    return this.context.core.postFinder.getSeveralPosts(offset, limit);
   }
 
   render() {
-    const { posts } = this.state;
+    const { posts, havePrevPost } = this.state;
+    const { number } = this.props.match.params;
+    const currentPageNumber = parseInt(number);
+
+    const haveNextPage = currentPageNumber > 1;
+    const havePrevPage = havePrevPost;
+
     return (
       <>
         <header className="header-section ">
@@ -63,8 +108,18 @@ class PostListPage extends React.Component<IPostListPageProps, IPostListPageStat
 
               <Pager
                 className="main-pager"
-                nextBtnLink={<Link to={`/post-list/page/1`}>Новые записи&rarr;</Link>}
-                prevBtnLink={<Link to={`/post-list/page/2`}>&larr;Предыдущие записи</Link>}
+                nextBtnLink={
+                  haveNextPage && (
+                    <Link to={`/post-list/page/${currentPageNumber - 1}`}>Новые записи&rarr;</Link>
+                  )
+                }
+                prevBtnLink={
+                  havePrevPage && (
+                    <Link to={`/post-list/page/${currentPageNumber + 1}`}>
+                      &larr;Предыдущие записи
+                    </Link>
+                  )
+                }
               />
             </div>
           </div>
