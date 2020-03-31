@@ -5,6 +5,7 @@ import { IPostListPostInfo } from "./IPostListPostInfo";
 import { boundMethod } from "autobind-decorator";
 import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import Pager from "../../Component/Pager/Pager";
+import PostListPageContent from "./PostListPageContent";
 
 const PAGE_SIZE = 5;
 
@@ -73,63 +74,18 @@ class PostListPage extends React.Component<IPostListPageProps, IPostListPageStat
 
     return (
       <>
-        <header className="header-section ">
-          <div className="intro-header no-img">
-            <div className="container">
-              <div className="row">
-                <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                  <div className="page-heading">
-                    <h1>Актуальные записи</h1>
-                    <hr className="small" />
-                    <span className="page-subheading">Notes</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-
-        <div className="container" role="main">
-          <div className="row">
-            <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-              <ul className="pager new-post">
-                <li className="previous">
-                  <a href="#" onClick={this.onAddNewPostClick}>
-                    Новый пост
-                  </a>
-                </li>
-              </ul>
-
-              <div className="posts-list">
-                {posts.map((post) => (
-                  <PostInfoCard post={post} key={post.id} />
-                ))}
-              </div>
-
-              <Pager
-                className="main-pager"
-                nextBtnLink={
-                  haveNextPage && (
-                    <Link to={`/post-list/page/${currentPageNumber - 1}`}>Новые записи&rarr;</Link>
-                  )
-                }
-                prevBtnLink={
-                  havePrevPage && (
-                    <Link to={`/post-list/page/${currentPageNumber + 1}`}>
-                      &larr;Предыдущие записи
-                    </Link>
-                  )
-                }
-              />
-            </div>
-          </div>
-        </div>
+        <PostListPageContent
+          posts={posts}
+          onAddNewPostClick={this.onAddNewPostClick}
+          nextPageLink={haveNextPage ? `/post-list/page/${currentPageNumber - 1}` : undefined}
+          prevPageLink={havePrevPage ? `/post-list/page/${currentPageNumber + 1}` : undefined}
+        />
       </>
     );
   }
 
   @boundMethod
-  async onAddNewPostClick(event: React.MouseEvent<HTMLAnchorElement>) {
+  async onAddNewPostClick(event: React.MouseEvent<HTMLElement>) {
     event.preventDefault();
     const postRepository = this.context.core.postRepository;
 

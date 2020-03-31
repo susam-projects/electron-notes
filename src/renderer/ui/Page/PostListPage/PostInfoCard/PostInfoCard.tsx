@@ -37,7 +37,3 @@ export class PostInfoCard extends React.Component<IPostInfoCardProps> {
     );
   }
 }
-
-function formatDate(date: number) {
-  return new Date(date).toLocaleDateString();
-}
