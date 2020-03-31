@@ -16,7 +16,10 @@ export class AppLayout extends React.Component<IAppLayoutProps> {
     const { page } = this.props;
     return (
       <div>
-        <nav className="navbar navbar-default navbar-fixed-top navbar-custom top-nav-short" ref={this.navRef}>
+        <nav
+          className="navbar navbar-default navbar-fixed-top navbar-custom top-nav-short"
+          ref={this.navRef}
+        >
           <div className={`container-fluid ${styles.headerContainer}`}>
             <div className="navbar-header">
               <Link className="navbar-brand" to="/">
