@@ -25,11 +25,7 @@ export class PostInfoCard extends React.Component<IPostInfoCardProps> {
         </Link>
 
         <p className="post-meta">
-          <PostMeta
-            postDate={post.postDate}
-            author={post.author}
-            content={post.content}
-          />
+          <PostMeta postDate={post.postDate} author={post.author} content={post.content} />
         </p>
         <div className="post-entry">
           <MarkdownViewer source={contentPreview} />

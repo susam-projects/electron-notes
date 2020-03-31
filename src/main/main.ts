@@ -10,7 +10,7 @@ installExtension(REACT_DEVELOPER_TOOLS)
 // автоматически закрываться, когда объект JavaScript собирает мусор.
 let win: BrowserWindow | null;
 
-const mode = "dev";
+const mode = process.env.APP_MODE || "prod";
 
 function createWindow() {
     win = new BrowserWindow({
