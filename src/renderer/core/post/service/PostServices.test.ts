@@ -69,9 +69,9 @@ describe("post storage services", () => {
 
         const storedPosts = await postFinder.getSeveralPosts(2, 10);
         expect(storedPosts).to.have.length(3);
-        expect(storedPosts).to.deep.include(post3);
-        expect(storedPosts).to.deep.include(post2);
-        expect(storedPosts).to.deep.include(post1);
+        expect(storedPosts[0]).to.deep.include(post3);
+        expect(storedPosts[1]).to.deep.include(post2);
+        expect(storedPosts[2]).to.deep.include(post1);
     });
 
     it("can get specific number of posts", async () => {
@@ -88,9 +88,9 @@ describe("post storage services", () => {
 
         const storedPosts = await postFinder.getSeveralPosts(0, 3);
         expect(storedPosts).to.have.length(3);
-        expect(storedPosts).to.deep.include(post3);
-        expect(storedPosts).to.deep.include(post2);
-        expect(storedPosts).to.deep.include(post1);
+        expect(storedPosts[0]).to.deep.include(post5);
+        expect(storedPosts[1]).to.deep.include(post4);
+        expect(storedPosts[2]).to.deep.include(post3);
     });
 
     it("can clear posts storage", async () => {
