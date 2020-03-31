@@ -3,9 +3,6 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { boundMethod } from "autobind-decorator";
 
-const NAVIGATION_BAR_SHRINK_POSITION = 50;
-const SHORT_NAVIGATION_BAR_CLASSNAME = "top-nav-short";
-
 interface IAppLayoutProps {
   page: React.ReactElement;
 }
@@ -17,7 +14,7 @@ export class AppLayout extends React.Component<IAppLayoutProps> {
     const { page } = this.props;
     return (
       <div>
-        <nav className="navbar navbar-default navbar-fixed-top navbar-custom" ref={this.navRef}>
+        <nav className="navbar navbar-default navbar-fixed-top navbar-custom top-nav-short" ref={this.navRef}>
           <div className="container-fluid" style={{ display: "flex", justifyContent: "center" }}>
             <div className="navbar-header">
               <Link className="navbar-brand" to="/">
@@ -54,35 +51,9 @@ export class AppLayout extends React.Component<IAppLayoutProps> {
     );
   }
 
-  componentDidMount(): void {
-    window.addEventListener("scroll", this.onWindowScroll);
-  }
-
-  componentWillUnmount(): void {
-    window.removeEventListener("scroll", this.onWindowScroll);
-  }
-
   @boundMethod
   onBeautifulHugoLinkClick(event: React.MouseEvent<HTMLAnchorElement>) {
     event.preventDefault();
     shell.openExternal(event.currentTarget.href);
-  }
-
-  @boundMethod
-  onWindowScroll() {
-    this.updateNavBarSize();
-  }
-
-  updateNavBarSize() {
-    const navBar = this.navRef.current;
-    if (!navBar) return;
-
-    if (window.scrollY > NAVIGATION_BAR_SHRINK_POSITION) {
-      if (!navBar.classList.contains(SHORT_NAVIGATION_BAR_CLASSNAME)) {
-        navBar.classList.add(SHORT_NAVIGATION_BAR_CLASSNAME);
-      }
-    } else {
-      navBar.classList.remove(SHORT_NAVIGATION_BAR_CLASSNAME);
-    }
   }
 }
