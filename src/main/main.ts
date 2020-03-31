@@ -2,6 +2,7 @@ import { app, BrowserWindow } from "electron";
 // @ts-ignore
 import installExtension, { REACT_DEVELOPER_TOOLS } from "iyobo-electron-devtools-installer";
 declare const MAIN_WINDOW_WEBPACK_ENTRY: any;
+declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: any;
 
 installExtension(REACT_DEVELOPER_TOOLS)
     .then((name: string) => console.log(`Added Extension:  ${name}`))
@@ -22,6 +23,7 @@ const createWindow = () => {
         height: 900,
         webPreferences: {
             nodeIntegration: true,
+            preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
         },
     });
 
