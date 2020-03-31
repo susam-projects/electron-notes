@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as Codemirror from "codemirror";
 import { UnControlled as CodeMirror } from "react-codemirror2";
 import { boundMethod } from "autobind-decorator";
 import "codemirror/mode/markdown/markdown";
@@ -7,13 +6,13 @@ import "codemirror/addon/display/fullscreen";
 import "./CodeMirror.global.scss";
 
 interface ITextEditorProps {
-  value?: string;
+  defaultValue?: string;
   onChange: (newValue: string) => void;
 }
 
 class MarkdownEditor extends React.Component<ITextEditorProps> {
   render() {
-    const { value } = this.props;
+    const { defaultValue } = this.props;
     return (
       <div>
         <CodeMirror
@@ -32,7 +31,7 @@ class MarkdownEditor extends React.Component<ITextEditorProps> {
               },
             },
           }}
-          value={value}
+          value={defaultValue}
           onChange={this.onChange}
         />
       </div>

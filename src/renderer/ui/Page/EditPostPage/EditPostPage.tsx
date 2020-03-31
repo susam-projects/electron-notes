@@ -1,13 +1,9 @@
 import * as React from "react";
-import { withRouter, RouteComponentProps, Link } from "react-router-dom";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 import { AppContext, IAppContext } from "../../AppContext";
 import { debounce, clone, isUndefined } from "lodash";
-import PostMeta from "../../Component/PostMeta/PostMeta";
-import classNames from "classnames";
-import MarkdownEditor from "../../Component/MarkdownEditor/MarkdownEditor";
 import { IEditPostPagePostInfo } from "./IEditPostPagePostInfo";
-
-const styles = require("./EditPostPage.scss");
+import EditPostPageContent from "./EditPostPageContent";
 
 interface ISinglePostPageUrlParams {
   id: string;
@@ -38,9 +34,6 @@ class EditPostPage extends React.Component<IEditPostPageProps, IEditPostPageStat
   context: IAppContext;
   state: IEditPostPageState = clone(NULL_POST_INFO);
 
-  titleInputRef = React.createRef<HTMLInputElement>();
-  subtitleInputRef = React.createRef<HTMLInputElement>();
-
   async componentDidMount() {
     const postFinder = this.context.core.postFinder;
     const { id } = this.props.match.params;
@@ -58,88 +51,42 @@ class EditPostPage extends React.Component<IEditPostPageProps, IEditPostPageStat
   }
 
   render() {
-    const { id, author, title, subtitle, content, postDate } = this.state;
+    const { id } = this.state;
 
     return (
-      <>
-        <header className="header-section ">
-          <div className="intro-header no-img">
-            <div className="container">
-              <div className="row">
-                <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                  <div className="post-heading">
-                    <PostMeta postDate={postDate} author={author} content={content} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-
-        <div className="container" role="main">
-          <div className="row">
-            <div className="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-              <div>
-                <input
-                  className={classNames("form-control", styles.input, styles.title)}
-                  type="text"
-                  defaultValue={title}
-                  ref={this.titleInputRef}
-                  onChange={this.onTitleChange}
-                  placeholder="Заголовок пока пуст..."
-                />
-              </div>
-              <div>
-                <input
-                  className={classNames("form-control", styles.input, styles.subtitle)}
-                  type="text"
-                  defaultValue={subtitle}
-                  ref={this.subtitleInputRef}
-                  onChange={this.onSubTitleChange}
-                  placeholder="Подзаголовок пока пуст..."
-                />
-              </div>
-              <div>
-                <MarkdownEditor onChange={this.onContentChange} value={content} />
-              </div>
-
-              <ul className="pager blog-pager end-edit">
-                <li className="previous">
-                  <Link to={`/post/${id}`}>Назад к посту</Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </>
+      <EditPostPageContent
+        postPageUrl={`/post/${id}`}
+        post={this.state}
+        onTitleChange={this.onTitleChange}
+        onSubtitleChange={this.onSubtitleChange}
+        onContentChange={this.onContentChange}
+      />
     );
   }
 
-  onTitleChange = debounceEditPostInput(async () => {
+  onTitleChange = debounceEditPostInput<string>(async (newTitle) => {
     const postRepository = this.context.core.postRepository;
     const postId = this.state.id;
-    const title = this.titleInputRef.current?.value;
-    if (isUndefined(title)) return;
-    await postRepository.updatePostTitle(postId, title);
+    if (isUndefined(newTitle)) return;
+    await postRepository.updatePostTitle(postId, newTitle);
   });
 
-  onSubTitleChange = debounceEditPostInput(async () => {
+  onSubtitleChange = debounceEditPostInput<string>(async (newSubtitle) => {
     const postRepository = this.context.core.postRepository;
     const postId = this.state.id;
-    const subtitle = this.subtitleInputRef.current?.value;
-    if (isUndefined(subtitle)) return;
-    await postRepository.updatePostSubtitle(postId, subtitle);
+    if (isUndefined(newSubtitle)) return;
+    await postRepository.updatePostSubtitle(postId, newSubtitle);
   });
 
-  onContentChange = debounceEditPostInput(async (content) => {
+  onContentChange = debounceEditPostInput<string>(async (newContent) => {
     const postRepository = this.context.core.postRepository;
     const postId = this.state.id;
-    if (isUndefined(content)) return;
-    await postRepository.updatePostContent(postId, content);
+    if (isUndefined(newContent)) return;
+    await postRepository.updatePostContent(postId, newContent);
   });
 }
 
-function debounceEditPostInput<T extends (...args: any[]) => any>(func: T) {
+function debounceEditPostInput<T>(func: (param: T) => void) {
   return debounce(func, 500, {
     leading: false,
     maxWait: 3000,
