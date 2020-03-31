@@ -6,14 +6,14 @@ import Pager from "../../Component/Pager/Pager";
 
 interface IPostListPageContentProps {
   posts: IPostListPostInfo[];
-  nextPageLink?: string;
-  prevPageLink?: string;
+  nextPageUrl?: string;
+  prevPageUrl?: string;
   onAddNewPostClick: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 class PostListPageContent extends React.Component<IPostListPageContentProps> {
   render() {
-    const { posts, nextPageLink, prevPageLink, onAddNewPostClick } = this.props;
+    const { posts, nextPageUrl, prevPageUrl, onAddNewPostClick } = this.props;
 
     return (
       <>
@@ -52,8 +52,8 @@ class PostListPageContent extends React.Component<IPostListPageContentProps> {
 
               <Pager
                 className="main-pager"
-                nextBtnLink={!!nextPageLink && <Link to={nextPageLink}>Новые записи&rarr;</Link>}
-                prevBtnLink={!!prevPageLink && <Link to={prevPageLink}>&larr;Предыдущие записи</Link>}
+                nextBtnLink={!!nextPageUrl && <Link to={nextPageUrl}>Новые записи&rarr;</Link>}
+                prevBtnLink={!!prevPageUrl && <Link to={prevPageUrl}>&larr;Предыдущие записи</Link>}
               />
             </div>
           </div>

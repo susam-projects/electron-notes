@@ -73,14 +73,12 @@ class PostListPage extends React.Component<IPostListPageProps, IPostListPageStat
     const havePrevPage = havePrevPost;
 
     return (
-      <>
-        <PostListPageContent
-          posts={posts}
-          onAddNewPostClick={this.onAddNewPostClick}
-          nextPageLink={haveNextPage ? `/post-list/page/${currentPageNumber - 1}` : undefined}
-          prevPageLink={havePrevPage ? `/post-list/page/${currentPageNumber + 1}` : undefined}
-        />
-      </>
+      <PostListPageContent
+        posts={posts}
+        onAddNewPostClick={this.onAddNewPostClick}
+        nextPageUrl={haveNextPage ? `/post-list/page/${currentPageNumber - 1}` : undefined}
+        prevPageUrl={havePrevPage ? `/post-list/page/${currentPageNumber + 1}` : undefined}
+      />
     );
   }
 
