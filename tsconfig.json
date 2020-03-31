@@ -1,28 +1,34 @@
 {
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "**/*.test.*"
-  ],
   "compilerOptions": {
-    "outDir": "dist",
+    "allowJs": true,
+    "module": "es6",
+    "skipLibCheck": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
     "rootDir": ".",
     "baseUrl": ".",
-    "sourceMap": true,
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
     "noEmitOnError": false,
-    "module": "es6",
     "lib": [ "es7", "dom" ],
     "target": "es6",
     "jsx": "react",
     "pretty": true,
     "strict": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "skipLibCheck": true,
     "downlevelIteration": true,
-    "importHelpers": true
-  }
+    "importHelpers": true,
+    "paths": {
+      "*": ["node_modules/*"]
+    }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "**/*.test.*"
+  ]
 }

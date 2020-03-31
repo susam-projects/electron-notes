@@ -1,6 +1,6 @@
 const chai = require("chai");
 const chaiAsPromised = require("chai-as-promised");
-const assertArrays = require('chai-arrays');
+const assertArrays = require("chai-arrays");
 
 chai.use(assertArrays);
 chai.use(chaiAsPromised);

@@ -23,14 +23,17 @@ class PostMeta extends React.Component<IPostMetaProps> {
       <span className="post-meta">
         {postDate && (
           <>
-            <i className="fas fa-calendar"></i>&nbsp;Опубликовано{" "}
-            {moment(postDate).format("D MMMM YYYY")}
+            <i className="fas fa-calendar" />
+            &nbsp;Опубликовано {moment(postDate).format("D MMMM YYYY")}
           </>
         )}
         &nbsp;|&nbsp;
-        <i className="fas fa-clock"></i>&nbsp;{readTime}&nbsp;минут &nbsp;|&nbsp;
-        <i className="fas fa-book"></i>&nbsp;{wordsCount}&nbsp;слова &nbsp;|&nbsp;
-        <i className="fas fa-user"></i>&nbsp;{author}
+        <i className="fas fa-clock" />
+        &nbsp;{readTime}&nbsp;минут &nbsp;|&nbsp;
+        <i className="fas fa-book" />
+        &nbsp;{wordsCount}&nbsp;слова &nbsp;|&nbsp;
+        <i className="fas fa-user" />
+        &nbsp;{author}
       </span>
     );
   }

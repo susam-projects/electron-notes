@@ -2,7 +2,7 @@ import * as React from "react";
 import { AppContext, IAppContext } from "../../AppContext";
 import { IPostListPostInfo } from "./IPostListPostInfo";
 import { boundMethod } from "autobind-decorator";
-import { withRouter, RouteComponentProps, Link } from "react-router-dom";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 import PostListPageContent from "./PostListPageContent";
 
 const PAGE_SIZE = 5;

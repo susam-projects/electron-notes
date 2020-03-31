@@ -1,23 +1,69 @@
 {
-  "name": "electron-diary",
+  "name": "electron-notes",
+  "productName": "electron-notes",
   "version": "1.0.0",
-  "description": "it's kinda offline blog",
-  "main": "main/main.js",
-  "repository": "https://github.com/susam-projects/electron-diary.git",
-  "author": "susam",
-  "license": "MIT",
-  "private": false,
+  "description": "It's a kind of offline blog",
+  "main": ".webpack/main",
   "scripts": {
-    "build": "webpack --config ./webpack.config.js",
-    "start": "yarn run build && electron ./dist/main/main.js",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint --ext .ts --ext .tsx .",
     "test": "cross-env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\"}' electron-mocha --renderer --require ts-node/register --color src/renderer/**/*.test.ts",
     "pretty": "prettier --write src/**/*.{ts,tsx,css,scss}"
+  },
+  "keywords": [],
+  "repository": "https://github.com/susam-projects/electron-diary.git",
+  "author": "Susam",
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron_notes"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        }
+      ],
+      "plugins": [
+        [
+          "@electron-forge/plugin-webpack",
+          {
+            "mainConfig": "./webpack.main.config.js",
+            "renderer": {
+              "config": "./webpack.renderer.config.js",
+              "entryPoints": [
+                {
+                  "html": "./src/renderer/index.html",
+                  "js": "./src/renderer/index.tsx",
+                  "name": "main_window"
+                }
+              ]
+            }
+          }
+        ]
+      ]
+    }
   },
   "devDependencies": {
     "@bbob/core": "^2.5.4",
     "@bbob/preset-react": "^2.5.4",
     "@bbob/react": "^2.5.4",
+    "@electron-forge/cli": "6.0.0-beta.50",
+    "@electron-forge/maker-deb": "6.0.0-beta.50",
+    "@electron-forge/maker-rpm": "6.0.0-beta.50",
+    "@electron-forge/maker-squirrel": "6.0.0-beta.50",
+    "@electron-forge/maker-zip": "6.0.0-beta.50",
+    "@electron-forge/plugin-webpack": "6.0.0-beta.50",
     "@fortawesome/fontawesome-free": "^5.12.0",
+    "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
     "@openfonts/lora_cyrillic": "^1.44.0",
     "@openfonts/lora_latin": "^1.44.0",
     "@openfonts/open-sans_cyrillic": "^1.44.0",
@@ -34,6 +80,8 @@
     "@types/react-router-dom": "^5.1.3",
     "@types/react-textarea-autosize": "^4.3.5",
     "@types/voca": "^1.4.0",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
     "autobind-decorator": "^2.4.0",
     "autoprefixer": "^9.7.3",
     "bootstrap": "3.4.1",
@@ -47,14 +95,21 @@
     "cross-env": "^6.0.3",
     "css-loader": "^3.4.0",
     "dexie": "^2.0.4",
-    "electron": "^7.1.7",
+    "electron": "8.2.0",
     "electron-mocha": "^8.1.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
     "file-loader": "^5.0.2",
+    "fork-ts-checker-webpack-plugin": "^3.1.1",
     "highlight.js": "^9.18.1",
     "html-webpack-plugin": "^3.2.0",
     "iyobo-electron-devtools-installer": "^2.2.5",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
+    "node-loader": "^0.6.0",
     "node-sass": "^4.13.0",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.19.1",
@@ -71,9 +126,9 @@
     "ts-loader": "^6.2.1",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.4",
-    "voca": "^1.4.0",
-    "webpack": "^4.41.4",
-    "webpack-cli": "^3.3.10",
-    "webpackbar": "^4.0.0"
+    "voca": "^1.4.0"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
   }
 }

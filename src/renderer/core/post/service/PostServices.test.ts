@@ -3,7 +3,6 @@ import { PostRepository } from "./PostRepository";
 import { PostFinder } from "./PostFinder";
 import { PostStorage } from "../storage/PostStorage";
 import { ICreatePostInfo } from "../../../ui/Page/ICreatePostInfo";
-import { create } from "ts-node";
 
 const postStorage = new PostStorage();
 const postRepository = new PostRepository(postStorage);

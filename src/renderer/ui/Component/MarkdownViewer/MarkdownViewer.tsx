@@ -14,7 +14,7 @@ interface IMarkdownViewerProps {
 
 class MarkdownViewer extends React.Component<IMarkdownViewerProps> {
   render() {
-    let { source, className } = this.props;
+    const { source, className } = this.props;
     return (
       <ReactMarkdown
         className={classNames(className, styles.viewer)}

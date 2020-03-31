@@ -15,7 +15,7 @@ class CodeBlock extends React.PureComponent<ICodeBlockProps> {
   codeEl = React.createRef<HTMLDivElement>();
 
   render() {
-    let { language, value } = this.props;
+    const { language, value } = this.props;
     return (
       <pre>
         <code ref={this.codeEl} className={`language-${language}`}>
