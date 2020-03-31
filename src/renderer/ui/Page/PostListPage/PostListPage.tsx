@@ -1,10 +1,8 @@
 import * as React from "react";
-import { PostInfoCard } from "./PostInfoCard/PostInfoCard";
 import { AppContext, IAppContext } from "../../AppContext";
 import { IPostListPostInfo } from "./IPostListPostInfo";
 import { boundMethod } from "autobind-decorator";
 import { withRouter, RouteComponentProps, Link } from "react-router-dom";
-import Pager from "../../Component/Pager/Pager";
 import PostListPageContent from "./PostListPageContent";
 
 const PAGE_SIZE = 5;
@@ -78,6 +76,7 @@ class PostListPage extends React.Component<IPostListPageProps, IPostListPageStat
         onAddNewPostClick={this.onAddNewPostClick}
         nextPageUrl={haveNextPage ? `/post-list/page/${currentPageNumber - 1}` : undefined}
         prevPageUrl={havePrevPage ? `/post-list/page/${currentPageNumber + 1}` : undefined}
+        createSinglePostPageUrl={this.createSinglePostPageUrl}
       />
     );
   }
@@ -97,6 +96,11 @@ class PostListPage extends React.Component<IPostListPageProps, IPostListPageStat
     this.props.history.push(`/edit-post/${newPostId}`);
 
     return false;
+  }
+
+  @boundMethod
+  createSinglePostPageUrl(postId: number): string {
+    return `/post/${postId}`;
   }
 }
 

@@ -9,11 +9,18 @@ interface IPostListPageContentProps {
   nextPageUrl?: string;
   prevPageUrl?: string;
   onAddNewPostClick: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  createSinglePostPageUrl: (postId: number) => string;
 }
 
 class PostListPageContent extends React.Component<IPostListPageContentProps> {
   render() {
-    const { posts, nextPageUrl, prevPageUrl, onAddNewPostClick } = this.props;
+    const {
+      posts,
+      nextPageUrl,
+      prevPageUrl,
+      onAddNewPostClick,
+      createSinglePostPageUrl,
+    } = this.props;
 
     return (
       <>
@@ -46,7 +53,11 @@ class PostListPageContent extends React.Component<IPostListPageContentProps> {
 
               <div className="posts-list">
                 {posts.map((post) => (
-                  <PostInfoCard post={post} key={post.id} />
+                  <PostInfoCard
+                    post={post}
+                    key={post.id}
+                    postPageUrl={createSinglePostPageUrl(post.id)}
+                  />
                 ))}
               </div>
 

@@ -7,19 +7,20 @@ import MarkdownViewer from "../../../Component/MarkdownViewer/MarkdownViewer";
 
 interface IPostInfoCardProps {
   post: IPostListPostInfo;
+  postPageUrl: string;
 }
 
 const CONTENT_PREVIEW_MAX_LENGTH = 250;
 
 export class PostInfoCard extends React.Component<IPostInfoCardProps> {
   render() {
-    const { post } = this.props;
+    const { post, postPageUrl } = this.props;
     const contentPreview = truncate(post.content, {
       length: CONTENT_PREVIEW_MAX_LENGTH,
     });
     return (
       <article className="post-preview">
-        <Link to={`/post/${post.id}`}>
+        <Link to={postPageUrl}>
           <h2 className="post-title">{post.title}</h2>
           <h3 className="post-subtitle">{post.subtitle}</h3>
         </Link>
@@ -29,7 +30,7 @@ export class PostInfoCard extends React.Component<IPostInfoCardProps> {
         </p>
         <div className="post-entry">
           <MarkdownViewer source={contentPreview} />
-          <Link to={`/post/${post.id}`} className="post-read-more">
+          <Link to={postPageUrl} className="post-read-more">
             [Далее]
           </Link>
         </div>
