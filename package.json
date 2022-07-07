@@ -127,7 +127,7 @@
     "html-webpack-plugin": "^3.2.0",
     "iyobo-electron-devtools-installer": "^2.2.5",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "node-loader": "^0.6.0",
     "node-sass": "^4.13.0",
     "postcss-loader": "^3.0.0",
